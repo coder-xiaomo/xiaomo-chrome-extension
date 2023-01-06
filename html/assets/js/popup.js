@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
     /**
      * Direct Url
      */
@@ -21,7 +21,7 @@ $(function() {
     const btnExpandFulltext = document.querySelector("#btnExpandFulltext");
     // 页面加载时，更新界面开关状态
     chrome.storage.sync.get("State_ExpandFulltext", ({ State_ExpandFulltext }) => {
-      btnExpandFulltext.checked = !State_ExpandFulltext;
+        btnExpandFulltext.checked = !State_ExpandFulltext;
     });
 
     // 点击开关时存储按钮状态并刷新页面
@@ -36,12 +36,12 @@ $(function() {
      */
     const btnGoogleAds = document.querySelector("#btnAdsBlock");
     // 页面加载时，更新界面开关状态
-    chrome.storage.sync.get('State_AdsBlock', function(budget) {
+    chrome.storage.sync.get('State_AdsBlock', function (budget) {
         btnGoogleAds.checked = !budget.State_AdsBlock;
     });
 
     // 点击开关时存储按钮状态并刷新页面
-    $("#btnAdsBlock").click(function() {
+    $("#btnAdsBlock").click(function () {
         chrome.storage.sync.set({ 'State_AdsBlock': !btnGoogleAds.checked });
         chrome.extension.getBackgroundPage().updateAdsBlockStatus(!btnGoogleAds.checked);
         refreshPage('Ads Block');
@@ -53,12 +53,12 @@ $(function() {
      */
     const btnSSSearch = document.querySelector("#btnSSSearch");
     // 页面加载时，更新界面开关状态
-    chrome.storage.sync.get('State_SSSearch', function(budget) {
-      btnSSSearch.checked = !budget.State_SSSearch;
+    chrome.storage.sync.get('State_SSSearch', function (budget) {
+        btnSSSearch.checked = !budget.State_SSSearch;
     });
 
     // 点击开关时存储按钮状态并刷新页面
-    $("#btnSSSearch").click(function() {
+    $("#btnSSSearch").click(function () {
         chrome.storage.sync.set({ 'State_SSSearch': !btnSSSearch.checked });
         // refreshPage('SS Search');
     })
@@ -72,25 +72,28 @@ $(function() {
      * @param {} url
      * @returns
      */
-    function isBrowserSettingPage({url, action, showSorryInfo = true }) {
-      var protocol, isSettingPage = true;
-      if(/^chrome:\/\/.*$/.test(url)) {
-          protocol = "chrome://"
-      } else if(/^edge:\/\/.*$/.test(url)) {
-          protocol = "edge://"
-      } else {
-          isSettingPage = false;
-      }
-      if(showSorryInfo && isSettingPage) {
-          alert(`十分抱歉，由于浏览器限制，“${protocol}”开头的网站不支持${action}`);
-      }
-      return isSettingPage;
+    function isBrowserSettingPage({ url, action, showSorryInfo = true }) {
+        var protocol, isSettingPage = true;
+        if (/^chrome:\/\/.*$/.test(url)) {
+            protocol = "chrome://"
+        } else if (/^edge:\/\/.*$/.test(url)) {
+            protocol = "edge://"
+        } else {
+            isSettingPage = false;
+        }
+        if (showSorryInfo && isSettingPage) {
+            alert(`十分抱歉，由于浏览器限制，“${protocol}”开头的网站不支持${action}`);
+        }
+        return isSettingPage;
     }
 
     /**
      * 改变开关自动刷新页面
+     *
+     * 向网页发送一条消息，由注入的脚本接收，完成页面刷新操作
      */
     function refreshPage(messageInfo) {
+        console.log("refreshPage", messageInfo)
         chrome.tabs.query({
             active: true,
             currentWindow: true

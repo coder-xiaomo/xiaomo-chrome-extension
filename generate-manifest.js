@@ -95,7 +95,9 @@ var manifest = {
             ],
             "js": [
                 // "assets/js/lib/jquery.min.js",
-                // "assets/js/content.js",
+
+                // 切换开关刷新页面
+                "scripts/content.js",
 
                 // Double S 快捷搜索 页面注入js
                 "scripts/advanced-search/content.js"
