@@ -959,7 +959,7 @@ async function checkIsActived() {
       resolve(State.State_SSSearch);
     });
   });
-  console.log("Double S 快捷搜索功能开启状态：" + isActived);
+  // console.log("Double S 快捷搜索功能开启状态：" + isActived);
   if (!isActived) {
     chrome.omnibox.setDefaultSuggestion({
       description: "Double S 快捷搜索功能未开启，请在小墨助手扩展设置中开启后再试"
@@ -1067,7 +1067,7 @@ function isCurrentNewTab(tabs) {
 
 
 /**
- * 更新下拉框中提示
+ * 更新搜索框中提示
  * @param String text 用户输入文本
  */
 function updateDefaultSuggestion(text) {
@@ -1079,7 +1079,7 @@ function updateDefaultSuggestion(text) {
   ];
 
   // 如果用户输入不为空，先假设为文字搜索，如果后面匹配上了其他搜索方式，则更新
-  let isPlaintext = !!text.trim().length;
+  let isPlaintext = true;
   currentSearchModeIndex = 0; // 初始化搜索方式下标
 
   // 默认第 0 个为文字搜索，除此之外的搜索方式如果都没有匹配到，则显示文字搜索
@@ -1102,40 +1102,18 @@ function updateDefaultSuggestion(text) {
   }
   description.push('<dim> ] </dim>');
 
-  if (text.trim().length != 0) {
-    description[2] = isPlaintext ? ('<match>' + omniboxSearchModes[0].showText + '：' + encodeXML(text.trim()) + '</match>') : ('<dim>' + omniboxSearchModes[0].showText + '</dim>');
+  // 最后来处理最前面的文字部分
+  if (isPlaintext) {
+    // 当前为文字搜索，这里不加粗
+    description[2] = '<match>' + omniboxSearchModes[0].showText + (text.trim().length > 0 ? encodeXML('：' + text.trim()) : "") + '</match>'
   } else {
-    // 用户什么也没输入时，就高亮显示文字搜索关键字
-    description[2] = '<match>' + omniboxSearchModes[0].showText + '</match>';
+    // 当前为其他类型搜索，这里不加粗
+    description[2] = '<dim>' + omniboxSearchModes[0].showText + '</dim>'
   }
 
-  console.log("[更新搜索建议]",
-    "搜索模式:", omniboxSearchModes[currentSearchModeIndex].showText,
-    "isPlaintext", isPlaintext,
-    "text:", text,
-    // "description:", description,
-  )
+  console.log("[更新搜索建议]", "搜索模式:", omniboxSearchModes[currentSearchModeIndex].showText);
 
   chrome.omnibox.setDefaultSuggestion({
     description: description.join('')
   });
-
-  // var isRegex = /^re:/.test(text);
-  // var isFile = /^file:/.test(text);
-  // var isHalp = (text == 'halp');
-  // var isPlaintext = text.length && !isRegex && !isFile && !isHalp;
-
-  // var description = '<match><url>搜索方式</url></match><dim> [ </dim>';
-  // description += isPlaintext ? ('<match>' + text + '</match>') : '文字';
-  // description += '<dim> | </dim>';
-  // description += isRegex ? ('<match>' + text + '</match>') : 're: 正则';
-  // description += '<dim> | </dim>';
-  // description += isFile ? ('<match>' + text + '</match>') : 'file:文件';
-  // description += '<dim> | </dim>';
-  // description += isHalp ? '<match>halp</match>' : 'halp';
-  // description += '<dim> ]</dim>';
-
-  // chrome.omnibox.setDefaultSuggestion({
-  //   description: description
-  // });
 }
