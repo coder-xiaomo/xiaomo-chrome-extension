@@ -59,17 +59,19 @@ var omniboxSearchModes = [
     },
     // 搜索建议
     getSuggestions: async function (text, suggest) {
+      // 传入的 text 没有经过 encode
+      let encodeText = encodeXML(text)
       // 如果前面已经有了 【[xx] 】，则先去掉
       text = text.replace(/^\[.*?\]\s*/, "");
       suggest([
-        { content: "[百度] " + text, description: "使用 <url>[百度]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "[搜狗] " + text, description: "使用 <url>[搜狗]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "[必应] " + text, description: "使用 <url>[必应]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "[360] " + text, description: "使用 <url>[360]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "[微博] " + text, description: "使用 <url>[微博]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "[知乎] " + text, description: "使用 <url>[知乎]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "[今日头条] " + text, description: "使用 <url>[今日头条]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "[中国搜索] " + text, description: "使用 <url>[中国搜索]</url> 搜索 <match>" + text + "</match>", deletable: false },
+        { content: "[百度] " + text, description: "使用 <url>[百度]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "[搜狗] " + text, description: "使用 <url>[搜狗]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "[必应] " + text, description: "使用 <url>[必应]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "[360] " + text, description: "使用 <url>[360]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "[微博] " + text, description: "使用 <url>[微博]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "[知乎] " + text, description: "使用 <url>[知乎]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "[今日头条] " + text, description: "使用 <url>[今日头条]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "[中国搜索] " + text, description: "使用 <url>[中国搜索]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
       ]);
       return;
 
@@ -154,16 +156,18 @@ var omniboxSearchModes = [
     },
     // 搜索建议
     getSuggestions: async function (text, suggest) {
+      // 传入的 text 没有经过 encode
+      let encodeText = encodeXML(text)
       // 如果前面已经有了 【[xx] 】，则先去掉
       text = text.replace(/^\[.*?\]\s*/, "");
       suggest([
-        { content: "img: [百度] " + text, description: "使用 <url>[百度图片]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "img: [搜狗] " + text, description: "使用 <url>[搜狗图片]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "img: [必应] " + text, description: "使用 <url>[必应图片]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "img: [360] " + text, description: "使用 <url>[360图片]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "img: [微博] " + text, description: "使用 <url>[微博图片]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "img: [今日头条] " + text, description: "使用 <url>[今日头条]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "img: [中国搜索] " + text, description: "使用 <url>[中国搜索图片]</url> 搜索 <match>" + text + "</match>", deletable: false },
+        { content: "img: [百度] " + text, description: "使用 <url>[百度图片]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "img: [搜狗] " + text, description: "使用 <url>[搜狗图片]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "img: [必应] " + text, description: "使用 <url>[必应图片]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "img: [360] " + text, description: "使用 <url>[360图片]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "img: [微博] " + text, description: "使用 <url>[微博图片]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "img: [今日头条] " + text, description: "使用 <url>[今日头条]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "img: [中国搜索] " + text, description: "使用 <url>[中国搜索图片]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
       ]);
       return;
     },
@@ -221,26 +225,28 @@ var omniboxSearchModes = [
     },
     // 搜索建议
     getSuggestions: async function (text, suggest) {
+      // 传入的 text 没有经过 encode
+      let encodeText = encodeXML(text)
       // 如果前面已经有了 【[xx] 】，则先去掉
       text = text.replace(/^\[.*?\]\s*/, "");
       suggest([
-        { content: "video: [B站] " + text, description: "使用 <url>[哔哩哔哩动画]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "video: [爱奇艺] " + text, description: "使用 <url>[爱奇艺]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "video: [腾讯视频] " + text, description: "使用 <url>[腾讯视频]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "video: [优酷] " + text, description: "使用 <url>[优酷]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "video: [百度] " + text, description: "使用 <url>[百度视频]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "video: [搜狗] " + text, description: "使用 <url>[搜狗视频]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "video: [微博] " + text, description: "使用 <url>[微博视频]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "video: [抖音] " + text, description: "使用 <url>[抖音]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "video: [必应] " + text, description: "使用 <url>[必应视频]</url> 搜索 <match>" + text + "</match>", deletable: false },
+        { content: "video: [B站] " + text, description: "使用 <url>[哔哩哔哩动画]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "video: [爱奇艺] " + text, description: "使用 <url>[爱奇艺]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "video: [腾讯视频] " + text, description: "使用 <url>[腾讯视频]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "video: [优酷] " + text, description: "使用 <url>[优酷]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "video: [百度] " + text, description: "使用 <url>[百度视频]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "video: [搜狗] " + text, description: "使用 <url>[搜狗视频]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "video: [微博] " + text, description: "使用 <url>[微博视频]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "video: [抖音] " + text, description: "使用 <url>[抖音]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "video: [必应] " + text, description: "使用 <url>[必应视频]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
         // 以下内容超出9个不被显示
-        { content: "video: [360] " + text, description: "使用 <url>[360视频]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "video: [今日头条] " + text, description: "使用 <url>[今日头条]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "video: [快手] " + text, description: "使用 <url>[快手]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "video: [知乎] " + text, description: "使用 <url>[知乎]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "video: [搜狐] " + text, description: "使用 <url>[搜狐视频]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "video: [央视网] " + text, description: "使用 <url>[央视网]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "video: [中国搜索] " + text, description: "使用 <url>[中国搜索视频]</url> 搜索 <match>" + text + "</match>", deletable: false },
+        { content: "video: [360] " + text, description: "使用 <url>[360视频]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "video: [今日头条] " + text, description: "使用 <url>[今日头条]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "video: [快手] " + text, description: "使用 <url>[快手]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "video: [知乎] " + text, description: "使用 <url>[知乎]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "video: [搜狐] " + text, description: "使用 <url>[搜狐视频]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "video: [央视网] " + text, description: "使用 <url>[央视网]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "video: [中国搜索] " + text, description: "使用 <url>[中国搜索视频]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
       ]);
       return;
     },
@@ -324,16 +330,18 @@ var omniboxSearchModes = [
     },
     // 搜索建议
     getSuggestions: async function (text, suggest) {
+      // 传入的 text 没有经过 encode
+      let encodeText = encodeXML(text)
       // 如果前面已经有了 【[xx] 】，则先去掉
       text = text.replace(/^\[.*?\]\s*/, "");
       suggest([
-        { content: "news: [今日头条] " + text, description: "使用 <url>[今日头条]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "news: [百度] " + text, description: "使用 <url>[百度资讯]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "news: [360] " + text, description: "使用 <url>[360资讯]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "news: [微博] " + text, description: "使用 <url>[微博]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "news: [人民网] " + text, description: "使用 <url>[人民网]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "news: [中国搜索] " + text, description: "使用 <url>[中国搜索]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "news: [快资讯] " + text, description: "使用 <url>[快资讯]</url> 搜索 <match>" + text + "</match>", deletable: false },
+        { content: "news: [今日头条] " + text, description: "使用 <url>[今日头条]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "news: [百度] " + text, description: "使用 <url>[百度资讯]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "news: [360] " + text, description: "使用 <url>[360资讯]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "news: [微博] " + text, description: "使用 <url>[微博]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "news: [人民网] " + text, description: "使用 <url>[人民网]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "news: [中国搜索] " + text, description: "使用 <url>[中国搜索]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "news: [快资讯] " + text, description: "使用 <url>[快资讯]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
       ]);
       return;
     },
@@ -390,22 +398,24 @@ var omniboxSearchModes = [
     },
     // 搜索建议
     getSuggestions: async function (text, suggest) {
+      // 传入的 text 没有经过 encode
+      let encodeText = encodeXML(text)
       // 如果前面已经有了 【[xx] 】，则先去掉
       text = text.replace(/^\[.*?\]\s*/, "");
       suggest([
-        { content: "fanyi: [有道翻译] " + text, description: "<url>翻译</url> | 使用 <url>[有道翻译]</url> 翻译 <match>" + text + "</match>", deletable: false },
-        { content: "fanyi: [百度] " + text, description: "<url>翻译</url> | 使用 <url>[百度翻译]</url> 翻译 <match>" + text + "</match>", deletable: false },
-        { content: "fanyi: [腾讯] " + text, description: "<url>翻译</url> | 使用 <url>[腾讯翻译君]</url> 翻译 <match>" + text + "</match>", deletable: false },
-        { content: "fanyi: [DeepL] " + text, description: "<url>翻译</url> | 使用 <url>[DeepL翻译]</url> 翻译 <match>" + text + "</match>", deletable: false },
-        // 【需要注入自动翻译】 { content: "fanyi: [海词翻译] " + text, description: "<url>翻译</url> | 使用 <url>[海词翻译]</url> 翻译 <match>" + text + "</match>", deletable: false },
-        { content: "fanyi: [必应] " + text, description: "<url>查词</url> | 使用 <url>[必应词典]</url> 查词 <match>" + text + "</match>", deletable: false },
-        { content: "fanyi: [有道] " + text, description: "<url>查词</url> | 使用 <url>[有道]</url> 查词 <match>" + text + "</match>", deletable: false },
-        { content: "fanyi: [海词] " + text, description: "<url>查词</url> | 使用 <url>[海词]</url> 查词 <match>" + text + "</match>", deletable: false },
-        { content: "fanyi: [金山词霸] " + text, description: "<url>查词</url> | 使用 <url>[金山词霸]</url> 查词 <match>" + text + "</match>", deletable: false },
+        { content: "fanyi: [有道翻译] " + text, description: "<url>翻译</url> | 使用 <url>[有道翻译]</url> 翻译 <match>" + encodeText + "</match>", deletable: false },
+        { content: "fanyi: [百度] " + text, description: "<url>翻译</url> | 使用 <url>[百度翻译]</url> 翻译 <match>" + encodeText + "</match>", deletable: false },
+        { content: "fanyi: [腾讯] " + text, description: "<url>翻译</url> | 使用 <url>[腾讯翻译君]</url> 翻译 <match>" + encodeText + "</match>", deletable: false },
+        { content: "fanyi: [DeepL] " + text, description: "<url>翻译</url> | 使用 <url>[DeepL翻译]</url> 翻译 <match>" + encodeText + "</match>", deletable: false },
+        // 【需要注入自动翻译】 { content: "fanyi: [海词翻译] " + text, description: "<url>翻译</url> | 使用 <url>[海词翻译]</url> 翻译 <match>" + encodeText + "</match>", deletable: false },
+        { content: "fanyi: [必应] " + text, description: "<url>查词</url> | 使用 <url>[必应词典]</url> 查词 <match>" + encodeText + "</match>", deletable: false },
+        { content: "fanyi: [有道] " + text, description: "<url>查词</url> | 使用 <url>[有道]</url> 查词 <match>" + encodeText + "</match>", deletable: false },
+        { content: "fanyi: [海词] " + text, description: "<url>查词</url> | 使用 <url>[海词]</url> 查词 <match>" + encodeText + "</match>", deletable: false },
+        { content: "fanyi: [金山词霸] " + text, description: "<url>查词</url> | 使用 <url>[金山词霸]</url> 查词 <match>" + encodeText + "</match>", deletable: false },
         // 以下内容超出9个不被显示
-        { content: "fanyi: [360] " + text, description: "<url>翻译</url> | 使用 <url>[360翻译]</url> 翻译 <match>" + text + "</match>", deletable: false },
-        { content: "fanyi: [翻译狗] " + text, description: "<url>翻译</url> | 使用 <url>[翻译狗]</url> 翻译 <match>" + text + "</match>", deletable: false },
-        { content: "fanyi: [Google] " + text, description: "<url>翻译</url> | 使用 <url>[Google翻译]</url> 翻译 <match>" + text + "</match> （Google翻译在中国大陆无法使用）", deletable: false },
+        { content: "fanyi: [360] " + text, description: "<url>翻译</url> | 使用 <url>[360翻译]</url> 翻译 <match>" + encodeText + "</match>", deletable: false },
+        { content: "fanyi: [翻译狗] " + text, description: "<url>翻译</url> | 使用 <url>[翻译狗]</url> 翻译 <match>" + encodeText + "</match>", deletable: false },
+        { content: "fanyi: [Google] " + text, description: "<url>翻译</url> | 使用 <url>[Google翻译]</url> 翻译 <match>" + encodeText + "</match> （Google翻译在中国大陆无法使用）", deletable: false },
       ]);
       return;
     },
@@ -481,16 +491,18 @@ var omniboxSearchModes = [
     },
     // 搜索建议
     getSuggestions: async function (text, suggest) {
+      // 传入的 text 没有经过 encode
+      let encodeText = encodeXML(text)
       // 如果前面已经有了 【[xx] 】，则先去掉
       text = text.replace(/^\[.*?\]\s*/, "");
       suggest([
-        { content: "paper: [知网] " + text, description: "使用 <url>[中国知网]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "paper: [万方] " + text, description: "使用 <url>[万方数据]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "paper: [维普] " + text, description: "使用 <url>[维普期刊]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "paper: [百度] " + text, description: "使用 <url>[百度学术]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "paper: [必应] " + text, description: "使用 <url>[必应学术]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "paper: [搜狗] " + text, description: "使用 <url>[搜狗学术]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "paper: [谷歌] " + text, description: "使用 <url>[谷歌学术]</url> 搜索 <match>" + text + "</match> （谷歌学术在中国大陆无法使用）", deletable: false },
+        { content: "paper: [知网] " + text, description: "使用 <url>[中国知网]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "paper: [万方] " + text, description: "使用 <url>[万方数据]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "paper: [维普] " + text, description: "使用 <url>[维普期刊]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "paper: [百度] " + text, description: "使用 <url>[百度学术]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "paper: [必应] " + text, description: "使用 <url>[必应学术]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "paper: [搜狗] " + text, description: "使用 <url>[搜狗学术]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "paper: [谷歌] " + text, description: "使用 <url>[谷歌学术]</url> 搜索 <match>" + encodeText + "</match> （谷歌学术在中国大陆无法使用）", deletable: false },
       ]);
       return;
     },
@@ -549,12 +561,14 @@ var omniboxSearchModes = [
     },
     // 搜索建议
     getSuggestions: async function (text, suggest) {
+      // 传入的 text 没有经过 encode
+      let encodeText = encodeXML(text)
       // 如果前面已经有了 【[xx] 】，则先去掉
       text = text.replace(/^\[.*?\]\s*/, "");
       suggest([
-        { content: "baike: [百度] " + text, description: "使用 <url>[百度百科]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "baike: [搜狗] " + text, description: "使用 <url>[搜狗百科]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "baike: [360] " + text, description: "使用 <url>[360百科]</url> 搜索 <match>" + text + "</match>", deletable: false },
+        { content: "baike: [百度] " + text, description: "使用 <url>[百度百科]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "baike: [搜狗] " + text, description: "使用 <url>[搜狗百科]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "baike: [360] " + text, description: "使用 <url>[360百科]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
       ]);
       return;
     },
@@ -619,14 +633,16 @@ var omniboxSearchModes = [
     },
     // 搜索建议
     getSuggestions: async function (text, suggest) {
+      // 传入的 text 没有经过 encode
+      let encodeText = encodeXML(text)
       // 如果前面已经有了 【[xx] 】，则先去掉
       text = text.replace(/^\[.*?\]\s*/, "");
       suggest([
-        { content: "map: [百度] " + text, description: "使用 <url>[百度地图]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "map: [高德] " + text, description: "使用 <url>[高德地图]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "map: [必应] " + text, description: "使用 <url>[必应地图]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "map: [360] " + text, description: "使用 <url>[360地图]</url> 搜索 <match>" + text + "</match>", deletable: false },
-        { content: "map: [搜狗] " + text, description: "使用 <url>[搜狗地图]</url> 搜索 <match>" + text + "</match>", deletable: false },
+        { content: "map: [百度] " + text, description: "使用 <url>[百度地图]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "map: [高德] " + text, description: "使用 <url>[高德地图]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "map: [必应] " + text, description: "使用 <url>[必应地图]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "map: [360] " + text, description: "使用 <url>[360地图]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+        { content: "map: [搜狗] " + text, description: "使用 <url>[搜狗地图]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
       ]);
       return;
     },
@@ -678,15 +694,17 @@ var omniboxSearchModes = [
   //   },
   //   // 搜索建议
   //   getSuggestions: async function (text, suggest) {
+  //     // 传入的 text 没有经过 encode
+  //     let encodeText = encodeXML(text)
   //     // 如果前面已经有了 【[xx] 】，则先去掉
   //     text = text.replace(/^\[.*?\]\s*/, "");
   //     suggest([
   //       { content: "jk: [免责声明] " + text, description: "<match>[免责声明] <url>小墨助手仅提供快捷搜索功能，不对搜索结果承担责任。搜索结果仅供参考，请自行甄别，以免上当受骗。继续搜索代表您已知晓此声明。</url></match>", deletable: false },
-  //       { content: "jk: [丁香医生] " + text, description: "使用 <url>[丁香医生]</url> 搜索 <match>" + text + "</match>", deletable: false },
-  //       { content: "jk: [360] " + text, description: "使用 <url>[360良医]</url> 搜索 <match>" + text + "</match>", deletable: false },
-  //       { content: "jk: [好大夫] " + text, description: "使用 <url>[好大夫在线]</url> 搜索 <match>" + text + "</match>", deletable: false },
-  //       { content: "jk: [寻医问药] " + text, description: "使用 <url>[寻医问药网]</url> 搜索 <match>" + text + "</match>", deletable: false },
-  //       { content: "jk: [新华健康] " + text, description: "使用 <url>[新华健康]</url> 搜索 <match>" + text + "</match>", deletable: false },
+  //       { content: "jk: [丁香医生] " + text, description: "使用 <url>[丁香医生]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+  //       { content: "jk: [360] " + text, description: "使用 <url>[360良医]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+  //       { content: "jk: [好大夫] " + text, description: "使用 <url>[好大夫在线]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+  //       { content: "jk: [寻医问药] " + text, description: "使用 <url>[寻医问药网]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
+  //       { content: "jk: [新华健康] " + text, description: "使用 <url>[新华健康]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
   //       // 腾讯医典没有网页版；中华网健康没有搜索功能：https://health.china.com/；搜狐健康搜索为全站搜索：https://health.sohu.com/
   //     ]);
   //     return;
@@ -899,7 +917,7 @@ chrome.omnibox.onInputChanged.addListener(async function (text, suggest) {
 
   // 访问后端服务获得搜索建议
   var currentSearchMode = omniboxSearchModes[currentSearchModeIndex];
-  currentSearchMode.getSuggestions(currentSearchMode.getInputText(text), suggest);
+  currentSearchMode.getSuggestions(currentSearchMode.getInputText(text, false), suggest);
 });
 
 /**
@@ -916,7 +934,7 @@ chrome.omnibox.onInputEntered.addListener(async function (text) {
   updateDefaultSuggestion(text);
 
   var searchMode = omniboxSearchModes[currentSearchModeIndex];
-  var searchText = searchMode.getInputText(text);
+  var searchText = searchMode.getInputText(text, false);
   searchMode.search(searchText);
   console.log("用户输入：" + text);
 });
@@ -964,7 +982,7 @@ async function checkIsActived() {
  * @param string str
  * @returns
  */
-function encodeXML(str) {
+function encodeXML(str, opt = { encodeAngleBrackets: true /* 是否转义 < > */ }) {
   let result = str
   let map = {
     "&": "&amp;",
@@ -973,6 +991,12 @@ function encodeXML(str) {
     "\"": "&quot;",
     "'": "&apos;"
   }
+
+  if (opt && !opt.encodeAngleBrackets) {
+    delete map["<"]
+    delete map[">"]
+  }
+
   Object.keys(map).forEach((key) => result = result.replaceAll(key, map[key]))
   return result
 
@@ -984,6 +1008,26 @@ function encodeXML(str) {
   // var holder = document.createElement('div');
   // holder.textContent = str;
   // return holder.innerHTML;
+}
+
+
+/**
+ * 特殊字符 & < > " ' 的反转义（上述函数的反向操作）
+ *
+ * @param string str
+ * @returns
+ */
+function decodeXML(str) {
+  let result = str
+  let map = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    "\"": "&quot;",
+    "'": "&apos;"
+  }
+  Object.keys(map).forEach((key) => result = result.replaceAll(map[key], key))
+  return result
 }
 
 
@@ -1059,18 +1103,18 @@ function updateDefaultSuggestion(text) {
   description.push('<dim> ] </dim>');
 
   if (text.trim().length != 0) {
-    description[2] = isPlaintext ? ('<match>' + omniboxSearchModes[0].showText + '：' + text.trim() + '</match>') : ('<dim>' + omniboxSearchModes[0].showText + '</dim>');
+    description[2] = isPlaintext ? ('<match>' + omniboxSearchModes[0].showText + '：' + encodeXML(text.trim()) + '</match>') : ('<dim>' + omniboxSearchModes[0].showText + '</dim>');
   } else {
     // 用户什么也没输入时，就高亮显示文字搜索关键字
     description[2] = '<match>' + omniboxSearchModes[0].showText + '</match>';
   }
 
-  console.log("[更新下拉框提示]",
+  console.log("[更新搜索建议]",
+    "搜索模式:", omniboxSearchModes[currentSearchModeIndex].showText,
+    "isPlaintext", isPlaintext,
     "text:", text,
-    "匹配的搜索模式:", omniboxSearchModes[currentSearchModeIndex].showText);
-  console.log("    isPlaintext：", isPlaintext);
-  // console.log(description.join(''));
-  console.log("[更新下拉框提示结束]");
+    // "description:", description,
+  )
 
   chrome.omnibox.setDefaultSuggestion({
     description: description.join('')
