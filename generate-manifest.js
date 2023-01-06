@@ -56,7 +56,6 @@ var manifest = {
     // "automation": {},
 
     "background": {
-        // "service_worker": "scripts/service_worker/background.js"
         "service_worker": "background.js"
     },
 
