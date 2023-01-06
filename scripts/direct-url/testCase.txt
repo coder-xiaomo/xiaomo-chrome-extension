@@ -1,0 +1,18 @@
+/**
+ * 测试用网址：
+ * 知乎
+ * https://link.zhihu.com/?target=http%3A//only4.work
+ *
+ * 腾讯文档
+ * https://docs.qq.com/scenario/link.html?url=only4.work
+ *
+ * CSDN
+ * https://link.csdn.net/?target=https%3A//only4.work
+ *
+ * 简书
+ * https://links.jianshu.com/go?to=http%3A%2F%2Fwww.only4.work%2F
+ * https://www.jianshu.com/go-wild?ac=2&url=http%3A%2F%2Fwww.only4.work%2F
+ *
+ * QQ
+ * https://c.pc.qq.com/middlem.html?pfurl=https%3A%2F%2Fwww.only4.work%2F&pfuin=2291200076&pfto=qq.msg&type=0&gjlevel=15&gjsublevel=2804&iscontinue=0&ADUIN=2291200076&ADSESSION=1673029605&ADTAG=CLIENT.QQ.5941_AIO.0&ADPUBNO=27268
+ */

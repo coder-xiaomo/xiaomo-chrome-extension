@@ -1,6 +1,7 @@
 const path = require("path")
 const fs = require("fs")
 
+const RedirectRule = require("./scripts/direct-url/RedirectRule")
 
 /**
  * manifest 修改之后记得执行下面这条命令重新 generate
@@ -95,7 +96,8 @@ var manifest = {
             "js": [
                 // "assets/js/lib/jquery.min.js",
                 // "assets/js/content.js",
-                // "assets/js/direct-url/url.js",
+
+                // Double S 快捷搜索 页面注入js
                 "scripts/advanced-search/content.js"
             ],
             "css": [],
@@ -112,7 +114,7 @@ var manifest = {
         //     "run_at": "document_start"
         // },
         // {
-        //     // 自动展开模块
+        //     // 阅读全文自动展开模块
         //     "matches": [
         //         "*://blog.csdn.net/*",
         //         "*://www.it1352.com/*"
@@ -124,7 +126,7 @@ var manifest = {
         //     "run_at": "document_start"
         // },
         {
-            // 自动搜索模块
+            // Double S 快捷搜索 —— 自动搜索模块
             "matches": [
                 "*://fanyi.qq.com/*",
                 "*://baike.baidu.com/*",
@@ -137,7 +139,23 @@ var manifest = {
                 "scripts/advanced-search/content-helper.js"
             ],
             "run_at": "document_start"
-        }
+        },
+        {
+            // 确认页直接跳转
+            "matches": Object.keys(RedirectRule).map(host => {
+                return `*://${host}${RedirectRule[host].path}*`
+            }),
+            "css": [
+                "html/assets/lib/myukitoast/myukitoast.css"
+            ],
+            "js": [
+                "html/assets/lib/jquery-3.6.0.min.js",
+                "html/assets/lib/myukitoast/myukitoast.js",
+                "scripts/direct-url/RedirectRule.js",
+                "scripts/direct-url/url.js",
+            ],
+            "run_at": "document_start"
+        },
     ],
 
     "content_security_policy": {},
