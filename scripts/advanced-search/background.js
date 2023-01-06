@@ -54,8 +54,8 @@ var omniboxSearchModes = [
     // 搜索模式匹配
     // match: function (text) { },
     // 获取输入文字
-    getInputText: function (text, encodeText = true) {
-      return encodeText ? encodeXML(text) : text
+    getInputText: function (text, opt = { encodeText: true }) {
+      return opt.encodeText ? encodeXML(text) : text
     },
     // 搜索建议
     getSuggestions: async function (text, suggest) {
@@ -150,9 +150,9 @@ var omniboxSearchModes = [
       return /^img( |:|\uff1a)?/i.test(text)
     },
     // 获取输入文字
-    getInputText: function (text, encodeText = true) {
+    getInputText: function (text, opt = { encodeText: true }) {
       let returnText = /^img(:| |\uff1a)?(.*)$/i.exec(text)[2].trim()
-      return encodeText ? encodeXML(returnText) : returnText
+      return opt.encodeText ? encodeXML(returnText) : returnText
     },
     // 搜索建议
     getSuggestions: async function (text, suggest) {
@@ -219,9 +219,9 @@ var omniboxSearchModes = [
       return /^video( |:|\uff1a)?/i.test(text)
     },
     // 获取输入文字
-    getInputText: function (text, encodeText = true) {
+    getInputText: function (text, opt = { encodeText: true }) {
       let returnText = /^video(:| |\uff1a)?(.*)$/i.exec(text)[2].trim()
-      return encodeText ? encodeXML(returnText) : returnText
+      return opt.encodeText ? encodeXML(returnText) : returnText
     },
     // 搜索建议
     getSuggestions: async function (text, suggest) {
@@ -324,9 +324,9 @@ var omniboxSearchModes = [
       return /^news( |:|\uff1a)?/i.test(text)
     },
     // 获取输入文字
-    getInputText: function (text, encodeText = true) {
+    getInputText: function (text, opt = { encodeText: true }) {
       let returnText = /^news(:| |\uff1a)?(.*)$/i.exec(text)[2].trim()
-      return encodeText ? encodeXML(returnText) : returnText
+      return opt.encodeText ? encodeXML(returnText) : returnText
     },
     // 搜索建议
     getSuggestions: async function (text, suggest) {
@@ -392,9 +392,9 @@ var omniboxSearchModes = [
       return /^fanyi( |:|\uff1a)?/i.test(text)
     },
     // 获取输入文字
-    getInputText: function (text, encodeText = true) {
+    getInputText: function (text, opt = { encodeText: true }) {
       let returnText = /^fanyi(:| |\uff1a)?(.*)$/i.exec(text)[2].trim()
-      return encodeText ? encodeXML(returnText) : returnText
+      return opt.encodeText ? encodeXML(returnText) : returnText
     },
     // 搜索建议
     getSuggestions: async function (text, suggest) {
@@ -485,9 +485,9 @@ var omniboxSearchModes = [
       return /^paper( |:|\uff1a)?/i.test(text)
     },
     // 获取输入文字
-    getInputText: function (text, encodeText = true) {
+    getInputText: function (text, opt = { encodeText: true }) {
       let returnText = /^paper(:| |\uff1a)?(.*)$/i.exec(text)[2].trim()
-      return encodeText ? encodeXML(returnText) : returnText
+      return opt.encodeText ? encodeXML(returnText) : returnText
     },
     // 搜索建议
     getSuggestions: async function (text, suggest) {
@@ -555,9 +555,9 @@ var omniboxSearchModes = [
       return /^baike( |:|\uff1a)?/i.test(text)
     },
     // 获取输入文字
-    getInputText: function (text, encodeText = true) {
+    getInputText: function (text, opt = { encodeText: true }) {
       let returnText = /^baike(:| |\uff1a)?(.*)$/i.exec(text)[2].trim()
-      return encodeText ? encodeXML(returnText) : returnText
+      return opt.encodeText ? encodeXML(returnText) : returnText
     },
     // 搜索建议
     getSuggestions: async function (text, suggest) {
@@ -627,9 +627,9 @@ var omniboxSearchModes = [
       return /^map( |:|\uff1a)?/i.test(text)
     },
     // 获取输入文字
-    getInputText: function (text, encodeText = true) {
+    getInputText: function (text, opt = { encodeText: true }) {
       let returnText = /^map(:| |\uff1a)?(.*)$/i.exec(text)[2].trim()
-      return encodeText ? encodeXML(returnText) : returnText
+      return opt.encodeText ? encodeXML(returnText) : returnText
     },
     // 搜索建议
     getSuggestions: async function (text, suggest) {
@@ -688,9 +688,9 @@ var omniboxSearchModes = [
   //     return /^jk( |:|\uff1a)?/i.test(text)
   //   },
   //   // 获取输入文字
-  //   getInputText: function (text, encodeText = true) {
+  //   getInputText: function (text, opt = { encodeText: true }) {
   //     let returnText = /^jk(:| |\uff1a)?(.*)$/i.exec(text)[2].trim()
-  //     return encodeText ? encodeXML(returnText) : returnText
+  //     return opt.encodeText ? encodeXML(returnText) : returnText
   //   },
   //   // 搜索建议
   //   getSuggestions: async function (text, suggest) {
@@ -754,9 +754,9 @@ var omniboxSearchModes = [
   //     return /^yn( |:|\uff1a)?/i.test(text)
   //   },
   //   // 获取输入文字
-  //   getInputText: function (text, encodeText = true) {
+  //   getInputText: function (text, opt = { encodeText: true }) {
   //     let returnText = /^yn(:| |\uff1a)?(.*)$/i.exec(text)[2].trim()
-  //     return encodeText ? encodeXML(returnText) : returnText
+  //     return opt.encodeText ? encodeXML(returnText) : returnText
   //   },
   //   // 搜索建议
   //   getSuggestions: async function (text, suggest) {
@@ -777,9 +777,9 @@ var omniboxSearchModes = [
   //     return /^re( |:|\uff1a)?/i.test(text)
   //   },
   //   // 获取输入文字
-  //   getInputText: function (text, encodeText = true) {
+  //   getInputText: function (text, opt = { encodeText: true }) {
   //     let returnText = /^re(:| |\uff1a)?(.*)$/i.exec(text)[2].trim()
-  //     return encodeText ? encodeXML(returnText) : returnText
+  //     return opt.encodeText ? encodeXML(returnText) : returnText
   //   },
   //   // 搜索建议
   //   getSuggestions: async function (text, suggest) {
@@ -800,9 +800,9 @@ var omniboxSearchModes = [
   //     return /^ls( |:|\uff1a)?/i.test(text)
   //   },
   //   // 获取输入文字
-  //   getInputText: function (text, encodeText = true) {
+  //   getInputText: function (text, opt = { encodeText: true }) {
   //     let returnText = /^ls(:| |\uff1a)?(.*)$/i.exec(text)[2].trim()
-  //     return encodeText ? encodeXML(returnText) : returnText
+  //     return opt.encodeText ? encodeXML(returnText) : returnText
   //   },
   //   // 搜索建议
   //   getSuggestions: async function (text, suggest) {
@@ -917,7 +917,7 @@ chrome.omnibox.onInputChanged.addListener(async function (text, suggest) {
 
   // 访问后端服务获得搜索建议
   var currentSearchMode = omniboxSearchModes[currentSearchModeIndex];
-  currentSearchMode.getSuggestions(currentSearchMode.getInputText(text, false), suggest);
+  currentSearchMode.getSuggestions(currentSearchMode.getInputText(text, { encodeText: false }), suggest);
 });
 
 /**
@@ -934,7 +934,7 @@ chrome.omnibox.onInputEntered.addListener(async function (text) {
   updateDefaultSuggestion(text);
 
   var searchMode = omniboxSearchModes[currentSearchModeIndex];
-  var searchText = searchMode.getInputText(text, false);
+  var searchText = searchMode.getInputText(text, { encodeText: false });
   searchMode.search(searchText);
   console.log("用户输入：" + text);
 });
@@ -1094,7 +1094,7 @@ function updateDefaultSuggestion(text) {
       // 是当前这种搜索模式
       isPlaintext = false; // 说明不是文字搜索
       currentSearchModeIndex = i; // 记录当前搜索模式的下标
-      description.push('<match>' + keyword.showText + '：' + keyword.getInputText(text) + '</match>');
+      description.push('<match>' + keyword.showText + '：' + keyword.getInputText(text, { encodeText: true }) + '</match>');
     } else {
       // 不是当前这种搜索模式
       description.push('<dim>' + keyword.key + ": " + keyword.showText + '</dim>');
