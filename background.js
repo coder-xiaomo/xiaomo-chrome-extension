@@ -3,8 +3,6 @@ console.clear()
 console.log("[小墨助手]", "Service Worker init success.")
 
 
-
-
 // Events must be registered synchronously from the start of the page.
 chrome.runtime.onInstalled.addListener(() => {
   console.log("[小墨助手]", "chrome.runtime.onInstalled.")

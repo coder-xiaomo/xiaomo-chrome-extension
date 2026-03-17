@@ -66,11 +66,11 @@ window.onload = () => {
   // 获取参数
   let transText = getUrlVar('__xiaomo_extension__')
 
-  console.log("[小墨助手]", "transText:", transText);
-
   // 如果没有传递参数，那么就不执行
   if (!transText || transText.trim() == "" || transText == "undefined")
     return
+
+  console.log("[小墨助手]", "transText:", transText)
 
   switch (window.location.host) {
     default:
