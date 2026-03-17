@@ -241,12 +241,15 @@ var manifest = {
     "web_accessible_resources": []
 }
 
-function save(beautify = false) {
+function save({ beautify = false }) {
+    const manifestPath = path.join(__dirname, "./manifest.json")
     if (beautify) {
-        fs.writeFileSync(path.join(__dirname, "./manifest.json"), JSON.stringify(manifest, null, 4))
+        fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 4))
     } else {
-        fs.writeFileSync(path.join(__dirname, "./manifest.json"), JSON.stringify(manifest))
+        fs.writeFileSync(manifestPath, JSON.stringify(manifest))
     }
 }
 
-save()
+save({
+    beautify: true,
+})
