@@ -10,7 +10,8 @@ const RedirectRule = require("./scripts/direct-url/RedirectRule")
  * 或者使用这条命令监控文件变化
  * nodemon generate-manifest.js
  */
-// Manifest file format: https://developer.chrome.com/docs/extensions/mv3/manifest/
+// 清单文件格式 (Manifest file format)
+// https://developer.chrome.google.cn/docs/extensions/reference/manifest?hl=zh-cn
 var manifest = {
     /**
      * Required

@@ -1,0 +1,2 @@
+content.js 是注入到网页中的
+background.js 是 Service Worker 的
