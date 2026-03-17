@@ -62,7 +62,7 @@ var omniboxSearchModes = [
       // 传入的 text 没有经过 encode
       let encodeText = encodeXML(text)
       // 如果前面已经有了 【[xx] 】，则先去掉
-      text = text.replace(/^\[.*?\]\s*/, "");
+      text = text.replace(/^\[.*?\]\s*/, "")
       suggest([
         { content: "[百度] " + text, description: "使用 <url>[百度]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
         { content: "[搜狗] " + text, description: "使用 <url>[搜狗]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
@@ -72,72 +72,72 @@ var omniboxSearchModes = [
         { content: "[知乎] " + text, description: "使用 <url>[知乎]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
         { content: "[今日头条] " + text, description: "使用 <url>[今日头条]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
         { content: "[中国搜索] " + text, description: "使用 <url>[中国搜索]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
-      ]);
-      return;
+      ])
+      return
 
       // var url = "https://code.google.com/p/chromium/codesearch#search/&type=cs&q=" + query +
-      //   "&exact_package=chromium&type=cs";
-      // var req = new XMLHttpRequest();
-      // req.open("GET", url, true);
-      // req.setRequestHeader("GData-Version", "2");
+      //   "&exact_package=chromium&type=cs"
+      // var req = new XMLHttpRequest()
+      // req.open("GET", url, true)
+      // req.setRequestHeader("GData-Version", "2")
       // req.onreadystatechange = function () {
-      //   if (req.readyState == 4) callback(req.responseXML);
+      //   if (req.readyState == 4) callback(req.responseXML)
       // }
-      // req.send(null);
-      // // return req;
+      // req.send(null)
+      // // return req
 
 
-      // suggestions.forEach((suggestion) => { suggestion.deletable = false /* 用户不可删除 */ });
+      // suggestions.forEach((suggestion) => { suggestion.deletable = false /* 用户不可删除 */ })
       // /**
       //  * SuggestResult
       //  * refer: https://developer.chrome.com/docs/extensions/reference/omnibox/
       //  * { content, description[, deletable] }
       //  */
-      // suggest(suggestions);
+      // suggest(suggestions)
 
       // // suggest([
       // //   { content: "one", description: "the <match>aaa</match><url>www</url>first one", deletable: false },
       // //   { content: "number two", description: "the second entry", deletable: false }
-      // // ]);
+      // // ])
     },
     // 执行搜索
     search: function (text) {
       let searchInput = /^(\[.*?\])?( )?(.*)$/.exec(text)
       let searchType = /^\[(.*?)\]$/.exec((searchInput[1] ?? "[百度]"/* 默认百度搜索 */).trim())[0].trim()
       let searchText = searchInput[3].trim()
-      console.log("[文字搜索开始]");
-      console.log("    传入参数为：", text);
-      console.log("    searchInput为：", searchInput);
-      console.log("    searchType为：", searchType);
-      console.log("    searchText为：", searchText);
+      console.log("[文字搜索开始]")
+      console.log("    传入参数为：", text)
+      console.log("    searchInput为：", searchInput)
+      console.log("    searchType为：", searchType)
+      console.log("    searchText为：", searchText)
       switch (searchType) {
         default:
         case "[百度]":
-          navigate("https://www.baidu.com/s?wd=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://www.baidu.com/s?wd=" + encodeURIComponent(searchText), true)
+          break
         case "[搜狗]":
-          navigate("https://www.sogou.com/web?query=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://www.sogou.com/web?query=" + encodeURIComponent(searchText), true)
+          break
         case "[必应]":
-          navigate("https://cn.bing.com/search?q=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://cn.bing.com/search?q=" + encodeURIComponent(searchText), true)
+          break
         case "[360]":
-          navigate("https://www.so.com/s?q=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://www.so.com/s?q=" + encodeURIComponent(searchText), true)
+          break
         case "[微博]":
-          navigate("https://s.weibo.com/weibo?q=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://s.weibo.com/weibo?q=" + encodeURIComponent(searchText), true)
+          break
         case "[知乎]":
-          navigate("https://www.zhihu.com/search?type=content&q=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://www.zhihu.com/search?type=content&q=" + encodeURIComponent(searchText), true)
+          break
         case "[今日头条]":
-          navigate("https://so.toutiao.com/search?dvpf=pc&keyword=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://so.toutiao.com/search?dvpf=pc&keyword=" + encodeURIComponent(searchText), true)
+          break
         case "[中国搜索]":
-          navigate("http://www.chinaso.com/newssearch/all/allResults?q=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("http://www.chinaso.com/newssearch/all/allResults?q=" + encodeURIComponent(searchText), true)
+          break
       }
-      console.log("[文字搜索结束]");
+      console.log("[文字搜索结束]")
     }
   },
   // #############################################################################################################
@@ -159,7 +159,7 @@ var omniboxSearchModes = [
       // 传入的 text 没有经过 encode
       let encodeText = encodeXML(text)
       // 如果前面已经有了 【[xx] 】，则先去掉
-      text = text.replace(/^\[.*?\]\s*/, "");
+      text = text.replace(/^\[.*?\]\s*/, "")
       suggest([
         { content: "img: [百度] " + text, description: "使用 <url>[百度图片]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
         { content: "img: [搜狗] " + text, description: "使用 <url>[搜狗图片]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
@@ -168,45 +168,45 @@ var omniboxSearchModes = [
         { content: "img: [微博] " + text, description: "使用 <url>[微博图片]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
         { content: "img: [今日头条] " + text, description: "使用 <url>[今日头条]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
         { content: "img: [中国搜索] " + text, description: "使用 <url>[中国搜索图片]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
-      ]);
-      return;
+      ])
+      return
     },
     // 执行搜索
     search: function (text) {
       let searchInput = /^(\[.*?\])?( )?(.*)$/.exec(text)
       let searchType = /^\[(.*?)\]$/.exec((searchInput[1] ?? "[百度]"/* 默认百度图片搜索 */).trim())[0].trim()
       let searchText = searchInput[3].trim()
-      console.log("[图片搜索开始]");
-      console.log("    传入参数为：", text);
-      console.log("    searchInput为：", searchInput);
-      console.log("    searchType为：", searchType);
-      console.log("    searchText为：", searchText);
+      console.log("[图片搜索开始]")
+      console.log("    传入参数为：", text)
+      console.log("    searchInput为：", searchInput)
+      console.log("    searchType为：", searchType)
+      console.log("    searchText为：", searchText)
       switch (searchType) {
         default:
         case "[百度]":
-          navigate("https://image.baidu.com/search/index?tn=baiduimage&word=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://image.baidu.com/search/index?tn=baiduimage&word=" + encodeURIComponent(searchText), true)
+          break
         case "[搜狗]":
-          navigate("https://pic.sogou.com/pics?query=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://pic.sogou.com/pics?query=" + encodeURIComponent(searchText), true)
+          break
         case "[必应]":
-          navigate("https://cn.bing.com/images/search?q=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://cn.bing.com/images/search?q=" + encodeURIComponent(searchText), true)
+          break
         case "[360]":
-          navigate("https://image.so.com/i?q=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://image.so.com/i?q=" + encodeURIComponent(searchText), true)
+          break
         case "[微博]":
-          navigate("https://s.weibo.com/pic?q=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://s.weibo.com/pic?q=" + encodeURIComponent(searchText), true)
+          break
         case "[今日头条]":
-          navigate("https://so.toutiao.com/search?pd=atlas&dvpf=pc&keyword=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://so.toutiao.com/search?pd=atlas&dvpf=pc&keyword=" + encodeURIComponent(searchText), true)
+          break
         case "[中国搜索]":
-          navigate("http://www.chinaso.com/newssearch/image?q=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("http://www.chinaso.com/newssearch/image?q=" + encodeURIComponent(searchText), true)
+          break
 
       }
-      console.log("[图片搜索结束]");
+      console.log("[图片搜索结束]")
     }
   },
   // #############################################################################################################
@@ -228,7 +228,7 @@ var omniboxSearchModes = [
       // 传入的 text 没有经过 encode
       let encodeText = encodeXML(text)
       // 如果前面已经有了 【[xx] 】，则先去掉
-      text = text.replace(/^\[.*?\]\s*/, "");
+      text = text.replace(/^\[.*?\]\s*/, "")
       suggest([
         { content: "video: [B站] " + text, description: "使用 <url>[哔哩哔哩动画]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
         { content: "video: [爱奇艺] " + text, description: "使用 <url>[爱奇艺]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
@@ -247,71 +247,71 @@ var omniboxSearchModes = [
         { content: "video: [搜狐] " + text, description: "使用 <url>[搜狐视频]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
         { content: "video: [央视网] " + text, description: "使用 <url>[央视网]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
         { content: "video: [中国搜索] " + text, description: "使用 <url>[中国搜索视频]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
-      ]);
-      return;
+      ])
+      return
     },
     // 执行搜索
     search: function (text) {
       let searchInput = /^(\[.*?\])?( )?(.*)$/.exec(text)
       let searchType = /^\[(.*?)\]$/.exec((searchInput[1] ?? "[B站]"/* 默认爱奇艺搜索 */).trim())[0].trim()
       let searchText = searchInput[3].trim()
-      console.log("[视频搜索开始]");
-      console.log("    传入参数为：", text);
-      console.log("    searchInput为：", searchInput);
-      console.log("    searchType为：", searchType);
-      console.log("    searchText为：", searchText);
+      console.log("[视频搜索开始]")
+      console.log("    传入参数为：", text)
+      console.log("    searchInput为：", searchInput)
+      console.log("    searchType为：", searchType)
+      console.log("    searchText为：", searchText)
       switch (searchType) {
         default:
         case "[B站]":
-          navigate("https://search.bilibili.com/all?keyword=" + searchText);
-          break;
+          navigate("https://search.bilibili.com/all?keyword=" + searchText)
+          break
         case "[爱奇艺]":
-          navigate("https://so.iqiyi.com/so/q_" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://so.iqiyi.com/so/q_" + encodeURIComponent(searchText), true)
+          break
         case "[腾讯视频]":
-          navigate("https://v.qq.com/x/search/?q=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://v.qq.com/x/search/?q=" + encodeURIComponent(searchText), true)
+          break
         case "[优酷]":
-          navigate("https://so.youku.com/search_video/q_" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://so.youku.com/search_video/q_" + encodeURIComponent(searchText), true)
+          break
         case "[百度]":
-          navigate("https://v.baidu.com/v?word=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://v.baidu.com/v?word=" + encodeURIComponent(searchText), true)
+          break
         case "[搜狗]":
-          navigate("https://v.sogou.com/v?query=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://v.sogou.com/v?query=" + encodeURIComponent(searchText), true)
+          break
         case "[360]":
-          navigate("https://tv.360kan.com/s?q=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://tv.360kan.com/s?q=" + encodeURIComponent(searchText), true)
+          break
         case "[微博]":
-          navigate("https://s.weibo.com/video?q=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://s.weibo.com/video?q=" + encodeURIComponent(searchText), true)
+          break
         case "[抖音]":
-          navigate("https://www.douyin.com/search/" + encodeURIComponent(searchText) + "?type=video", true);
-          break;
+          navigate("https://www.douyin.com/search/" + encodeURIComponent(searchText) + "?type=video", true)
+          break
         case "[必应]":
-          navigate("https://cn.bing.com/videos/search?q=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://cn.bing.com/videos/search?q=" + encodeURIComponent(searchText), true)
+          break
         case "[今日头条]":
-          navigate("https://so.toutiao.com/search?pd=video&dvpf=pc&keyword=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://so.toutiao.com/search?pd=video&dvpf=pc&keyword=" + encodeURIComponent(searchText), true)
+          break
         case "[知乎]":
-          navigate("https://www.zhihu.com/search?type=zvideo&q=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://www.zhihu.com/search?type=zvideo&q=" + encodeURIComponent(searchText), true)
+          break
         case "[快手]":
-          navigate("https://www.kuaishou.com/search/video?searchKey=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://www.kuaishou.com/search/video?searchKey=" + encodeURIComponent(searchText), true)
+          break
         case "[搜狐]":
-          navigate("https://so.tv.sohu.com/mts?wd=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://so.tv.sohu.com/mts?wd=" + encodeURIComponent(searchText), true)
+          break
         case "[央视网]":
-          navigate("https://search.cctv.com/search.php?type=video&qtext=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://search.cctv.com/search.php?type=video&qtext=" + encodeURIComponent(searchText), true)
+          break
         case "[中国搜索]":
-          navigate("http://www.chinaso.com/newssearch/video?q=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("http://www.chinaso.com/newssearch/video?q=" + encodeURIComponent(searchText), true)
+          break
       }
-      console.log("[视频搜索结束]");
+      console.log("[视频搜索结束]")
     }
   },
   // #############################################################################################################
@@ -333,7 +333,7 @@ var omniboxSearchModes = [
       // 传入的 text 没有经过 encode
       let encodeText = encodeXML(text)
       // 如果前面已经有了 【[xx] 】，则先去掉
-      text = text.replace(/^\[.*?\]\s*/, "");
+      text = text.replace(/^\[.*?\]\s*/, "")
       suggest([
         { content: "news: [今日头条] " + text, description: "使用 <url>[今日头条]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
         { content: "news: [百度] " + text, description: "使用 <url>[百度资讯]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
@@ -342,44 +342,44 @@ var omniboxSearchModes = [
         { content: "news: [人民网] " + text, description: "使用 <url>[人民网]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
         { content: "news: [中国搜索] " + text, description: "使用 <url>[中国搜索]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
         { content: "news: [快资讯] " + text, description: "使用 <url>[快资讯]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
-      ]);
-      return;
+      ])
+      return
     },
     // 执行搜索
     search: function (text) {
       let searchInput = /^(\[.*?\])?( )?(.*)$/.exec(text)
       let searchType = /^\[(.*?)\]$/.exec((searchInput[1] ?? "[今日头条]"/* 默认今日头条搜索 */).trim())[0].trim()
       let searchText = searchInput[3].trim()
-      console.log("[新闻搜索开始]");
-      console.log("    传入参数为：", text);
-      console.log("    searchInput为：", searchInput);
-      console.log("    searchType为：", searchType);
-      console.log("    searchText为：", searchText);
+      console.log("[新闻搜索开始]")
+      console.log("    传入参数为：", text)
+      console.log("    searchInput为：", searchInput)
+      console.log("    searchType为：", searchType)
+      console.log("    searchText为：", searchText)
       switch (searchType) {
         default:
         case "[今日头条]":
-          navigate("https://www.toutiao.com/search/?keyword=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://www.toutiao.com/search/?keyword=" + encodeURIComponent(searchText), true)
+          break
         case "[百度]":
-          navigate("https://www.baidu.com/s?tn=news&word=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://www.baidu.com/s?tn=news&word=" + encodeURIComponent(searchText), true)
+          break
         case "[360]":
-          navigate("https://news.so.com/ns?q=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://news.so.com/ns?q=" + encodeURIComponent(searchText), true)
+          break
         case "[微博]":
-          navigate("https://s.weibo.com/weibo/" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://s.weibo.com/weibo/" + encodeURIComponent(searchText), true)
+          break
         case "[人民网]":
-          navigate("http://search.people.cn/s?keyword=" + encodeURIComponent(searchText) + "&st=0&_=" + Date.now(), true);
-          break;
+          navigate("http://search.people.cn/s?keyword=" + encodeURIComponent(searchText) + "&st=0&_=" + Date.now(), true)
+          break
         case "[中国搜索]":
-          navigate("http://www.chinaso.com/newssearch/news?q=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("http://www.chinaso.com/newssearch/news?q=" + encodeURIComponent(searchText), true)
+          break
         case "[快资讯]":
-          navigate("https://www.360kuai.com/search?q=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://www.360kuai.com/search?q=" + encodeURIComponent(searchText), true)
+          break
       }
-      console.log("[新闻搜索结束]");
+      console.log("[新闻搜索结束]")
     }
   },
   // #############################################################################################################
@@ -401,7 +401,7 @@ var omniboxSearchModes = [
       // 传入的 text 没有经过 encode
       let encodeText = encodeXML(text)
       // 如果前面已经有了 【[xx] 】，则先去掉
-      text = text.replace(/^\[.*?\]\s*/, "");
+      text = text.replace(/^\[.*?\]\s*/, "")
       suggest([
         { content: "fanyi: [有道翻译] " + text, description: "<url>翻译</url> | 使用 <url>[有道翻译]</url> 翻译 <match>" + encodeText + "</match>", deletable: false },
         { content: "fanyi: [百度] " + text, description: "<url>翻译</url> | 使用 <url>[百度翻译]</url> 翻译 <match>" + encodeText + "</match>", deletable: false },
@@ -416,63 +416,63 @@ var omniboxSearchModes = [
         { content: "fanyi: [360] " + text, description: "<url>翻译</url> | 使用 <url>[360翻译]</url> 翻译 <match>" + encodeText + "</match>", deletable: false },
         { content: "fanyi: [翻译狗] " + text, description: "<url>翻译</url> | 使用 <url>[翻译狗]</url> 翻译 <match>" + encodeText + "</match>", deletable: false },
         { content: "fanyi: [Google] " + text, description: "<url>翻译</url> | 使用 <url>[Google翻译]</url> 翻译 <match>" + encodeText + "</match> （Google翻译在中国大陆无法使用）", deletable: false },
-      ]);
-      return;
+      ])
+      return
     },
     // 执行搜索
     search: function (text) {
       let searchInput = /^(\[.*?\])?( )?(.*)$/.exec(text)
       let searchType = /^\[(.*?)\]$/.exec((searchInput[1] ?? "[有道翻译]"/* 默认有道翻译 */).trim())[0].trim()
       let searchText = searchInput[3].trim()
-      console.log("[翻译搜索开始]");
-      console.log("    传入参数为：", text);
-      console.log("    searchInput为：", searchInput);
-      console.log("    searchType为：", searchType);
-      console.log("    searchText为：", searchText);
+      console.log("[翻译搜索开始]")
+      console.log("    传入参数为：", text)
+      console.log("    searchInput为：", searchInput)
+      console.log("    searchType为：", searchType)
+      console.log("    searchText为：", searchText)
       switch (searchType) {
         default:
         case "[有道翻译]":
           // 后面参数通过注入的js代码获取并在网页加载完后填入到翻译框中，点击翻译按钮
-          navigate("https://fanyi.youdao.com/index.html?__xiaomo_extension__=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://fanyi.youdao.com/index.html?__xiaomo_extension__=" + encodeURIComponent(searchText), true)
+          break
         case "[百度]":
           // 百度翻译中英文会自动识别，所以不需要手动判断
-          navigate("https://fanyi.baidu.com/#en/zh/" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://fanyi.baidu.com/#en/zh/" + encodeURIComponent(searchText), true)
+          break
         case "[必应]":
-          navigate("https://cn.bing.com/dict/search?q=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://cn.bing.com/dict/search?q=" + encodeURIComponent(searchText), true)
+          break
         case "[腾讯]":
           // 网页加载好后自动点击翻译按钮
-          navigate("https://fanyi.qq.com/?text=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://fanyi.qq.com/?text=" + encodeURIComponent(searchText), true)
+          break
         case "[DeepL]":
           let hasChineseChar = /.*[\u4e00-\u9fa5]+.*$/.test(searchText)
-          navigate("https://www.deepl.com/translator#" + (hasChineseChar ? "zh/en/" : "en/zh/") + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://www.deepl.com/translator#" + (hasChineseChar ? "zh/en/" : "en/zh/") + encodeURIComponent(searchText), true)
+          break
         // case "[海词翻译]":
-        //   navigate("http://fanyi.dict.cn/" + encodeURIComponent(searchText), true);
-        //   break;
+        //   navigate("http://fanyi.dict.cn/" + encodeURIComponent(searchText), true)
+        //   break
         case "[金山词霸]":
-          navigate("https://www.iciba.com/word?w=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://www.iciba.com/word?w=" + encodeURIComponent(searchText), true)
+          break
         case "[海词]":
-          navigate("https://dict.cn/" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://dict.cn/" + encodeURIComponent(searchText), true)
+          break
         case "[有道]":
-          navigate("https://www.youdao.com/w/" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://www.youdao.com/w/" + encodeURIComponent(searchText), true)
+          break
         case "[360]":
-          navigate("https://fanyi.so.com/#" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://fanyi.so.com/#" + encodeURIComponent(searchText), true)
+          break
         case "[翻译狗]":
-          navigate("https://www.fanyigou.com/trans/totran/tranText.html?text=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://www.fanyigou.com/trans/totran/tranText.html?text=" + encodeURIComponent(searchText), true)
+          break
         case "[Google]":
-          navigate("https://translate.google.cn/?text=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://translate.google.cn/?text=" + encodeURIComponent(searchText), true)
+          break
       }
-      console.log("[翻译搜索结束]");
+      console.log("[翻译搜索结束]")
     }
   },
   // #############################################################################################################
@@ -494,7 +494,7 @@ var omniboxSearchModes = [
       // 传入的 text 没有经过 encode
       let encodeText = encodeXML(text)
       // 如果前面已经有了 【[xx] 】，则先去掉
-      text = text.replace(/^\[.*?\]\s*/, "");
+      text = text.replace(/^\[.*?\]\s*/, "")
       suggest([
         { content: "paper: [知网] " + text, description: "使用 <url>[中国知网]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
         { content: "paper: [万方] " + text, description: "使用 <url>[万方数据]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
@@ -503,46 +503,46 @@ var omniboxSearchModes = [
         { content: "paper: [必应] " + text, description: "使用 <url>[必应学术]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
         { content: "paper: [搜狗] " + text, description: "使用 <url>[搜狗学术]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
         { content: "paper: [谷歌] " + text, description: "使用 <url>[谷歌学术]</url> 搜索 <match>" + encodeText + "</match> （谷歌学术在中国大陆无法使用）", deletable: false },
-      ]);
-      return;
+      ])
+      return
     },
     // 执行搜索
     search: function (text) {
       let searchInput = /^(\[.*?\])?( )?(.*)$/.exec(text)
       let searchType = /^\[(.*?)\]$/.exec((searchInput[1] ?? "[知网]"/* 默认中国知网搜索 */).trim())[0].trim()
       let searchText = searchInput[3].trim()
-      console.log("[学术论文搜索开始]");
-      console.log("    传入参数为：", text);
-      console.log("    searchInput为：", searchInput);
-      console.log("    searchType为：", searchType);
-      console.log("    searchText为：", searchText);
+      console.log("[学术论文搜索开始]")
+      console.log("    传入参数为：", text)
+      console.log("    searchInput为：", searchInput)
+      console.log("    searchType为：", searchType)
+      console.log("    searchText为：", searchText)
       switch (searchType) {
         default:
         case "[知网]":
           // 后面参数通过注入的js代码获取并在网页加载完后填入到搜索框中，点击搜索按钮
-          navigate("https://www.cnki.net/?__xiaomo_extension__=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://www.cnki.net/?__xiaomo_extension__=" + encodeURIComponent(searchText), true)
+          break
         case "[万方]":
-          navigate("https://s.wanfangdata.com.cn/paper?q=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://s.wanfangdata.com.cn/paper?q=" + encodeURIComponent(searchText), true)
+          break
         case "[维普]":
           // 后面参数通过注入的js代码获取并在网页加载完后填入到搜索框中，点击搜索按钮
-          navigate("http://qikan.cqvip.com/?__xiaomo_extension__=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("http://qikan.cqvip.com/?__xiaomo_extension__=" + encodeURIComponent(searchText), true)
+          break
         case "[百度]":
-          navigate("https://xueshu.baidu.com/s?wd=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://xueshu.baidu.com/s?wd=" + encodeURIComponent(searchText), true)
+          break
         case "[必应]":
-          navigate("https://cn.bing.com/academic/search?q=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://cn.bing.com/academic/search?q=" + encodeURIComponent(searchText), true)
+          break
         case "[搜狗]":
-          navigate("https://scholar.sogou.com/xueshu?query=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://scholar.sogou.com/xueshu?query=" + encodeURIComponent(searchText), true)
+          break
         case "[Google]":
-          navigate("https://scholar.google.com/scholar?q=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://scholar.google.com/scholar?q=" + encodeURIComponent(searchText), true)
+          break
       }
-      console.log("[学术论文搜索结束]");
+      console.log("[学术论文搜索结束]")
     }
   },
   // #############################################################################################################
@@ -564,37 +564,37 @@ var omniboxSearchModes = [
       // 传入的 text 没有经过 encode
       let encodeText = encodeXML(text)
       // 如果前面已经有了 【[xx] 】，则先去掉
-      text = text.replace(/^\[.*?\]\s*/, "");
+      text = text.replace(/^\[.*?\]\s*/, "")
       suggest([
         { content: "baike: [百度] " + text, description: "使用 <url>[百度百科]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
         { content: "baike: [搜狗] " + text, description: "使用 <url>[搜狗百科]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
         { content: "baike: [360] " + text, description: "使用 <url>[360百科]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
-      ]);
-      return;
+      ])
+      return
     },
     // 执行搜索
     search: function (text) {
       let searchInput = /^(\[.*?\])?( )?(.*)$/.exec(text)
       let searchType = /^\[(.*?)\]$/.exec((searchInput[1] ?? "[百度]"/* 默认百度百科搜索 */).trim())[0].trim()
       let searchText = searchInput[3].trim()
-      console.log("[百科搜索开始]");
-      console.log("    传入参数为：", text);
-      console.log("    searchInput为：", searchInput);
-      console.log("    searchType为：", searchType);
-      console.log("    searchText为：", searchText);
+      console.log("[百科搜索开始]")
+      console.log("    传入参数为：", text)
+      console.log("    searchInput为：", searchInput)
+      console.log("    searchType为：", searchType)
+      console.log("    searchText为：", searchText)
       switch (searchType) {
         default:
         case "[百度]":
           // 后面参数通过注入的js代码获取并在网页加载完后填入到搜索框中，点击搜索按钮
-          navigate("https://baike.baidu.com/?__xiaomo_extension__=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://baike.baidu.com/?__xiaomo_extension__=" + encodeURIComponent(searchText), true)
+          break
         case "[搜狗]":
           //步骤一:创建异步对象
-          var ajax = new XMLHttpRequest();
+          var ajax = new XMLHttpRequest()
           //步骤二:设置请求的url参数,参数一是请求的类型,参数二是请求的url,可以带参数,动态的传递参数starName到服务端
-          ajax.open('get', 'https://baike.sogou.com/bapi/searchBarEnter?searchText=' + encodeURIComponent(searchText));
+          ajax.open('get', 'https://baike.sogou.com/bapi/searchBarEnter?searchText=' + encodeURIComponent(searchText))
           //步骤三:发送请求
-          ajax.send();
+          ajax.send()
           //步骤四:注册事件 onreadystatechange 状态改变就会调用
           ajax.onreadystatechange = function () {
             console.log("ajax result", ajax)
@@ -602,19 +602,19 @@ var omniboxSearchModes = [
               if (ajax.status == 200) {
                 //步骤五 如果能够进到这个判断 说明 数据 完美的回来了,并且请求的页面是存在的
                 console.log(ajax.responseText);//输入相应的内容
-                navigate("https://baike.sogou.com" + ajax.responseText, true);
+                navigate("https://baike.sogou.com" + ajax.responseText, true)
               } else {
-                alert("搜索失败，可能是搜狗官网搜索相关api已变更，你的输入已经复制到剪切板，请手动粘贴搜索");
-                navigate("https://baike.sogou.com/", true);
+                alert("搜索失败，可能是搜狗官网搜索相关api已变更，你的输入已经复制到剪切板，请手动粘贴搜索")
+                navigate("https://baike.sogou.com/", true)
               }
             }
           }
-          break;
+          break
         case "[360]":
-          navigate("https://baike.so.com/doc/search?word=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://baike.so.com/doc/search?word=" + encodeURIComponent(searchText), true)
+          break
       }
-      console.log("[百科搜索结束]");
+      console.log("[百科搜索结束]")
     }
   },
   // #############################################################################################################
@@ -636,45 +636,45 @@ var omniboxSearchModes = [
       // 传入的 text 没有经过 encode
       let encodeText = encodeXML(text)
       // 如果前面已经有了 【[xx] 】，则先去掉
-      text = text.replace(/^\[.*?\]\s*/, "");
+      text = text.replace(/^\[.*?\]\s*/, "")
       suggest([
         { content: "map: [百度] " + text, description: "使用 <url>[百度地图]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
         { content: "map: [高德] " + text, description: "使用 <url>[高德地图]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
         { content: "map: [必应] " + text, description: "使用 <url>[必应地图]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
         { content: "map: [360] " + text, description: "使用 <url>[360地图]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
         { content: "map: [搜狗] " + text, description: "使用 <url>[搜狗地图]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
-      ]);
-      return;
+      ])
+      return
     },
     // 执行搜索
     search: function (text) {
       let searchInput = /^(\[.*?\])?( )?(.*)$/.exec(text)
       let searchType = /^\[(.*?)\]$/.exec((searchInput[1] ?? "[百度]"/* 默认百度图片搜索 */).trim())[0].trim()
       let searchText = searchInput[3].trim()
-      console.log("[地图搜索开始]");
-      console.log("    传入参数为：", text);
-      console.log("    searchInput为：", searchInput);
-      console.log("    searchType为：", searchType);
-      console.log("    searchText为：", searchText);
+      console.log("[地图搜索开始]")
+      console.log("    传入参数为：", text)
+      console.log("    searchInput为：", searchInput)
+      console.log("    searchType为：", searchType)
+      console.log("    searchText为：", searchText)
       switch (searchType) {
         default:
         case "[百度]":
-          navigate("https://map.baidu.com/search?querytype=s&wd=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://map.baidu.com/search?querytype=s&wd=" + encodeURIComponent(searchText), true)
+          break
         case "[高德]":
-          navigate("https://www.amap.com/search?query=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://www.amap.com/search?query=" + encodeURIComponent(searchText), true)
+          break
         case "[必应]":
-          navigate("https://cn.bing.com/maps?q=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://cn.bing.com/maps?q=" + encodeURIComponent(searchText), true)
+          break
         case "[360]":
-          navigate("https://ditu.so.com/?k=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("https://ditu.so.com/?k=" + encodeURIComponent(searchText), true)
+          break
         case "[搜狗]":
-          navigate("http://map.sogou.com/#lq=" + encodeURIComponent(searchText), true);
-          break;
+          navigate("http://map.sogou.com/#lq=" + encodeURIComponent(searchText), true)
+          break
       }
-      console.log("[地图搜索结束]");
+      console.log("[地图搜索结束]")
     }
   },
   // 购物：https://s.taobao.com/search?q=搜索关键词
@@ -697,7 +697,7 @@ var omniboxSearchModes = [
   //     // 传入的 text 没有经过 encode
   //     let encodeText = encodeXML(text)
   //     // 如果前面已经有了 【[xx] 】，则先去掉
-  //     text = text.replace(/^\[.*?\]\s*/, "");
+  //     text = text.replace(/^\[.*?\]\s*/, "")
   //     suggest([
   //       { content: "jk: [免责声明] " + text, description: "<match>[免责声明] <url>小墨助手仅提供快捷搜索功能，不对搜索结果承担责任。搜索结果仅供参考，请自行甄别，以免上当受骗。继续搜索代表您已知晓此声明。</url></match>", deletable: false },
   //       { content: "jk: [丁香医生] " + text, description: "使用 <url>[丁香医生]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
@@ -706,42 +706,42 @@ var omniboxSearchModes = [
   //       { content: "jk: [寻医问药] " + text, description: "使用 <url>[寻医问药网]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
   //       { content: "jk: [新华健康] " + text, description: "使用 <url>[新华健康]</url> 搜索 <match>" + encodeText + "</match>", deletable: false },
   //       // 腾讯医典没有网页版；中华网健康没有搜索功能：https://health.china.com/；搜狐健康搜索为全站搜索：https://health.sohu.com/
-  //     ]);
-  //     return;
+  //     ])
+  //     return
   //   },
   //   // 执行搜索
   //   search: function (text) {
   //     let searchInput = /^(\[.*?\])?( )?(.*)$/.exec(text)
   //     let searchType = /^\[(.*?)\]$/.exec((searchInput[1] ?? "[免责声明]"/* 默认弹出免责声明 */).trim())[0].trim()
   //     let searchText = searchInput[3].trim()
-  //     console.log("[学术论文搜索开始]");
-  //     console.log("    传入参数为：", text);
-  //     console.log("    searchInput为：", searchInput);
-  //     console.log("    searchType为：", searchType);
-  //     console.log("    searchText为：", searchText);
-  //     alert("[免责声明] 小墨助手仅提供快捷搜索功能，不对搜索结果承担责任。搜索结果仅供参考，请自行甄别，以免上当受骗。继续搜索代表您已知晓此声明。");
+  //     console.log("[学术论文搜索开始]")
+  //     console.log("    传入参数为：", text)
+  //     console.log("    searchInput为：", searchInput)
+  //     console.log("    searchType为：", searchType)
+  //     console.log("    searchText为：", searchText)
+  //     alert("[免责声明] 小墨助手仅提供快捷搜索功能，不对搜索结果承担责任。搜索结果仅供参考，请自行甄别，以免上当受骗。继续搜索代表您已知晓此声明。")
   //     switch (searchType) {
   //       default:
   //       case "[免责声明]":
   //         // Silence is gold.
-  //         break;
+  //         break
   //       case "[丁香医生]":
-  //         navigate("https://dxy.com/search/result?query=" + encodeURIComponent(searchText), true);
-  //         break;
+  //         navigate("https://dxy.com/search/result?query=" + encodeURIComponent(searchText), true)
+  //         break
   //       case "[360]":
-  //         navigate("https://ly.so.com/s?q=" + encodeURIComponent(searchText), true);
-  //         break;
+  //         navigate("https://ly.so.com/s?q=" + encodeURIComponent(searchText), true)
+  //         break
   //       case "[好大夫]":
-  //         navigate("https://so.haodf.com/index/search?kw=" + encodeURIComponent(searchText), true);
-  //         break;
+  //         navigate("https://so.haodf.com/index/search?kw=" + encodeURIComponent(searchText), true)
+  //         break
   //       case "[寻医问药]":
-  //         navigate("https://so.xywy.com/comse.php?keyword=" + encodeURIComponent(searchText), true);
-  //         break;
+  //         navigate("https://so.xywy.com/comse.php?keyword=" + encodeURIComponent(searchText), true)
+  //         break
   //       case "[新华健康]":
-  //         navigate("http://so.xinhuanet.com/#search/0/" + encodeURIComponent(searchText) + "/1/", true);
-  //         break;
+  //         navigate("http://so.xinhuanet.com/#search/0/" + encodeURIComponent(searchText) + "/1/", true)
+  //         break
   //     }
-  //     console.log("[学术论文搜索结束]");
+  //     console.log("[学术论文搜索结束]")
   //   }
   // },
   // #############################################################################################################
@@ -760,7 +760,7 @@ var omniboxSearchModes = [
   //   },
   //   // 搜索建议
   //   getSuggestions: async function (text, suggest) {
-  //     return;
+  //     return
   //   },
   //   // 执行搜索
   //   search: function (text) {
@@ -783,7 +783,7 @@ var omniboxSearchModes = [
   //   },
   //   // 搜索建议
   //   getSuggestions: async function (text, suggest) {
-  //     return;
+  //     return
   //   },
   //   // 执行搜索
   //   search: function (text) {
@@ -806,20 +806,20 @@ var omniboxSearchModes = [
   //   },
   //   // 搜索建议
   //   getSuggestions: async function (text, suggest) {
-  //     return;
+  //     return
   //   },
   //   // 执行搜索
   //   search: function (text) {
   //     function onGot(historyItems) {
   //       for (item of historyItems) {
-  //         console.log(item.url);
-  //         console.log(new Date(item.lastVisitTime));
+  //         console.log(item.url)
+  //         console.log(new Date(item.lastVisitTime))
   //       }
   //     }
 
-  //     var searching = browser.history.search({ text: text, startTime: 0 });
+  //     var searching = browser.history.search({ text: text, startTime: 0 })
 
-  //     searching.then(onGot);
+  //     searching.then(onGot)
   //   }
   // },
   // #############################################################################################################
@@ -836,7 +836,7 @@ var omniboxSearchModes = [
   //   getInputText: (text) => "回车执行",
   //   // 搜索建议
   //   getSuggestions: async function (text, suggest) {
-  //     return;
+  //     return
   //   },
   //   // 执行搜索
   //   search: function (text) {
@@ -855,13 +855,13 @@ var omniboxSearchModes = [
  * ****************************************************************************************
  */
 // 当前匹配的搜索模式的下标
-var currentSearchModeIndex = 0;
+var currentSearchModeIndex = 0
 
 // 当前正在向服务端进行的请求
-var currentRequest = null;
+var currentRequest = null
 
 //
-var ajaxUrl = "https://www.baidu.com/s?wd=";
+var ajaxUrl = "https://www.baidu.com/s?wd="
 
 
 
@@ -877,67 +877,67 @@ var ajaxUrl = "https://www.baidu.com/s?wd=";
  * 用户开始输入文本
  */
 chrome.omnibox.onInputStarted.addListener(async function () {
-  if (!await checkIsActived()) return;
+  if (!await checkIsActived()) return
 
-  console.log("chrome.omnibox.onInputStarted");
-  updateDefaultSuggestion('');
-});
+  console.log("chrome.omnibox.onInputStarted")
+  updateDefaultSuggestion('')
+})
 
 /**
  * 搜索框失去焦点
  */
 chrome.omnibox.onInputCancelled.addListener(async function () {
-  if (!await checkIsActived()) return;
+  if (!await checkIsActived()) return
 
-  console.log("chrome.omnibox.onInputCancelled");
-  updateDefaultSuggestion('');
-});
+  console.log("chrome.omnibox.onInputCancelled")
+  updateDefaultSuggestion('')
+})
 
 /**
  * 输入框文本改变事件
  */
 chrome.omnibox.onInputChanged.addListener(async function (text, suggest) {
-  if (!await checkIsActived()) return;
+  if (!await checkIsActived()) return
 
-  console.log("chrome.omnibox.onInputChanged", text);
+  console.log("chrome.omnibox.onInputChanged", text)
 
   // 停止上一次搜索行为
   if (currentRequest != null) {
-    currentRequest.onreadystatechange = null;
-    currentRequest.abort();
-    currentRequest = null;
+    currentRequest.onreadystatechange = null
+    currentRequest.abort()
+    currentRequest = null
   }
 
   // 更新输入框回显提示信息
-  updateDefaultSuggestion(text);
+  updateDefaultSuggestion(text)
 
   // 如果啥也没有输入就返回
   if (text.trim() == '')
-    return;
+    return
 
   // 访问后端服务获得搜索建议
-  var currentSearchMode = omniboxSearchModes[currentSearchModeIndex];
-  currentSearchMode.getSuggestions(currentSearchMode.getInputText(text, { encodeText: false }), suggest);
-});
+  var currentSearchMode = omniboxSearchModes[currentSearchModeIndex]
+  currentSearchMode.getSuggestions(currentSearchMode.getInputText(text, { encodeText: false }), suggest)
+})
 
 /**
  * 用户输入完成，按下回车键
  */
 chrome.omnibox.onInputEntered.addListener(async function (text) {
-  if (!await checkIsActived()) return;
+  if (!await checkIsActived()) return
 
-  console.log("chrome.omnibox.onInputEntered");
+  console.log("chrome.omnibox.onInputEntered")
 
   // 更新输入框回显提示信息
   // 注意：这里必须还要更新一次，因为用户在输入时使用上下键选择suggest项目时，会触发 chrome.omnibox.onInputChanged 事件
   //       如果不执行，那么输入 ss img 之后上下选择对应搜索，按回车会被解析为文字搜索，而不是图片搜索
-  updateDefaultSuggestion(text);
+  updateDefaultSuggestion(text)
 
-  var searchMode = omniboxSearchModes[currentSearchModeIndex];
-  var searchText = searchMode.getInputText(text, { encodeText: false });
-  searchMode.search(searchText);
-  console.log("用户输入：" + text);
-});
+  var searchMode = omniboxSearchModes[currentSearchModeIndex]
+  var searchText = searchMode.getInputText(text, { encodeText: false })
+  searchMode.search(searchText)
+  console.log("用户输入：" + text)
+})
 
 
 
@@ -956,16 +956,16 @@ chrome.omnibox.onInputEntered.addListener(async function (text) {
 async function checkIsActived() {
   var isActived = await new Promise((resolve) => {
     chrome.storage.sync.get('State_SSSearch', function (State) {
-      resolve(State.State_SSSearch);
-    });
-  });
-  // console.log("Double S 快捷搜索功能开启状态：" + isActived);
+      resolve(State.State_SSSearch)
+    })
+  })
+  // console.log("Double S 快捷搜索功能开启状态：" + isActived)
   if (!isActived) {
     chrome.omnibox.setDefaultSuggestion({
       description: "Double S 快捷搜索功能未开启，请在小墨助手扩展设置中开启后再试"
-    });
+    })
   }
-  return isActived;
+  return isActived
 }
 
 
@@ -1005,9 +1005,9 @@ function encodeXML(str, opt = { encodeAngleBrackets: true /* 是否转义 < > */
    *
    * refer: https://www.javaroad.cn/questions/108186
    */
-  // var holder = document.createElement('div');
-  // holder.textContent = str;
-  // return holder.innerHTML;
+  // var holder = document.createElement('div')
+  // holder.textContent = str
+  // return holder.innerHTML
 }
 
 
@@ -1041,12 +1041,12 @@ function navigate(url, openInNewTab = false) {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     if (!openInNewTab || isCurrentNewTab(tabs)) {
       // 如果不在新标签页打开，或者当前标签页是新标签页
-      chrome.tabs.update(tabs[0].id, { url: url });
+      chrome.tabs.update(tabs[0].id, { url: url })
     } else {
       // 如果在新标签页打开，且当前标签页不是新标签页
-      chrome.tabs.create({ url: url });
+      chrome.tabs.create({ url: url })
     }
-  });
+  })
 }
 
 
@@ -1054,14 +1054,14 @@ function navigate(url, openInNewTab = false) {
 /**
  * 获取当前是否是新标签页
  * 需要先使用以下代码获取当前所有标签页
- * chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) { });
+ * chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) { })
  *
  * @param {*} tabs
  */
 function isCurrentNewTab(tabs) {
-  let isNewTab = (tabs && tabs.length > 0 && !!tabs[0].url && /^(.*?):\/\/newtab\/$/.test(tabs[0].url));
-  console.log("当前标签页" + (isNewTab ? "是" : "不是") + "新标签页");
-  return isNewTab;
+  let isNewTab = (tabs && tabs.length > 0 && !!tabs[0].url && /^(.*?):\/\/newtab\/$/.test(tabs[0].url))
+  console.log("当前标签页" + (isNewTab ? "是" : "不是") + "新标签页")
+  return isNewTab
 }
 
 
@@ -1076,31 +1076,31 @@ function updateDefaultSuggestion(text) {
     '<match><url>搜索方式</url></match>',
     '<dim> [ </dim>',
     '' /* 文字搜索 显示文字占位 */
-  ];
+  ]
 
   // 如果用户输入不为空，先假设为文字搜索，如果后面匹配上了其他搜索方式，则更新
-  let isPlaintext = true;
+  let isPlaintext = true
   currentSearchModeIndex = 0; // 初始化搜索方式下标
 
   // 默认第 0 个为文字搜索，除此之外的搜索方式如果都没有匹配到，则显示文字搜索
   for (var i = 1, keyword; i < omniboxSearchModes.length; i++) {
-    keyword = omniboxSearchModes[i];
+    keyword = omniboxSearchModes[i]
 
     // 分隔符
-    description.push('<dim> \| </dim>');
+    description.push('<dim> \| </dim>')
 
     // 通过用户输入文本匹配搜索方式
     if (keyword.match(text)) {
       // 是当前这种搜索模式
       isPlaintext = false; // 说明不是文字搜索
       currentSearchModeIndex = i; // 记录当前搜索模式的下标
-      description.push('<match>' + keyword.showText + '：' + keyword.getInputText(text, { encodeText: true }) + '</match>');
+      description.push('<match>' + keyword.showText + '：' + keyword.getInputText(text, { encodeText: true }) + '</match>')
     } else {
       // 不是当前这种搜索模式
-      description.push('<dim>' + keyword.key + ": " + keyword.showText + '</dim>');
+      description.push('<dim>' + keyword.key + ": " + keyword.showText + '</dim>')
     }
   }
-  description.push('<dim> ] </dim>');
+  description.push('<dim> ] </dim>')
 
   // 最后来处理最前面的文字部分
   if (isPlaintext) {
@@ -1111,9 +1111,9 @@ function updateDefaultSuggestion(text) {
     description[2] = '<dim>' + omniboxSearchModes[0].showText + '</dim>'
   }
 
-  console.log("[更新搜索建议]", "搜索模式:", omniboxSearchModes[currentSearchModeIndex].showText);
+  console.log("[更新搜索建议]", "搜索模式:", omniboxSearchModes[currentSearchModeIndex].showText)
 
   chrome.omnibox.setDefaultSuggestion({
     description: description.join('')
-  });
+  })
 }

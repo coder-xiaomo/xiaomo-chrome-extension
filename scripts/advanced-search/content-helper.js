@@ -18,8 +18,8 @@ window.onload = () => {
     case "fanyi.qq.com": // 腾讯翻译君
       document.getElementsByClassName("language-translate-button")[0].click()
       // $(".language-translate-button")[0].click()
-      clearUrlParams();
-      return;
+      clearUrlParams()
+      return
 
   }
 
@@ -37,27 +37,27 @@ window.onload = () => {
   // 获取 URL 参数
   // refer: https://www.cnblogs.com/chen-lhx/p/5198612.html
   function getUrlVar(name) {
-    var vars = [], hash;
+    var vars = [], hash
     let paramString = window.location.href.slice(window.location.href.indexOf('?') + 1)
     if (paramString.includes("#"))
       paramString = paramString.substring(0, paramString.indexOf("#"))
-    var hashes = paramString.split('&');
+    var hashes = paramString.split('&')
     for (var i = 0; i < hashes.length; i++) {
-      hash = hashes[i].split('=');
-      vars.push(hash[0]);
-      vars[hash[0]] = hash[1];
+      hash = hashes[i].split('=')
+      vars.push(hash[0])
+      vars[hash[0]] = hash[1]
     }
-    return decodeURIComponent(vars[name] ?? "");
+    return decodeURIComponent(vars[name] ?? "")
   }
 
   // 从URL参数中剔除指定参数
   function clearUrlParams() {
     // 参数获取完成后，清除页面参数
     // History.replaceState()  refer: https://developer.mozilla.org/zh-CN/docs/Web/API/History/replaceState
-    // history.replaceState({}, "", "/");
+    // history.replaceState({}, "", "/")
     let urlParams = (location.search + "&").replace(/__xiaomo_extension__=.*?\&/, ""); // 在最后补上一个 & ，然后替换掉 __xiaomo_extension__=xxx&
     urlParams = urlParams.substring(0, urlParams.length - 1); // 去掉最后一个 &
-    history.replaceState({}, "", location.pathname + urlParams);
+    history.replaceState({}, "", location.pathname + urlParams)
   }
 
   /**
@@ -74,13 +74,13 @@ window.onload = () => {
 
   switch (window.location.host) {
     default:
-      break;
+      break
 
     case "baike.baidu.com": // 百度百科
       document.getElementById("query").value = transText
       document.getElementById("search").click()
       // 跳转新页面，所以不需要清除页面参数
-      break;
+      break
 
     case "fanyi.youdao.com": // 有道翻译
       // 插件获取不到 Vue 对象(window.$，DOM元素app的properties)，但是在控制台可以
@@ -120,20 +120,20 @@ window.onload = () => {
       keepLastIndex(input)
 
       // 最后清理URL上的参数
-      clearUrlParams();
-      break;
+      clearUrlParams()
+      break
 
     case "www.cnki.net": // 中国知网
       document.getElementById("txt_SearchText").value = transText
       document.querySelector(".search-btn").click()
-      break;
+      break
 
     case "qikan.cqvip.com": // 维普期刊
       document.getElementById("searchKeywords").value = transText
       document.getElementById("btnSearch").click()
-      break;
+      break
 
   }
 
-  console.log("[小墨助手]", "自动搜索模块完成搜索 [" + transText + "]");
+  console.log("[小墨助手]", "自动搜索模块完成搜索 [" + transText + "]")
 }

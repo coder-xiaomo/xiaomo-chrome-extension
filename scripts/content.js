@@ -5,10 +5,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   console.log(`进入 scripts/content.js 的 onMessage Listener`)
 
   if (request.action === 'refreshPage') {
-    location.reload();
-    sendResponse('Reload page because of ' + request.info);
+    location.reload()
+    sendResponse('Reload page because of ' + request.info)
   }
 
   console.log(`离开 scripts/content.js 的 onMessage Listener`)
-  return true;
+  return true
 })

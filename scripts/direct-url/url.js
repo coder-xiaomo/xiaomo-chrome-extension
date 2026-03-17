@@ -8,7 +8,7 @@ window.onload = function () {
   })
   if (!isEnabled) {
     console.log("[小墨助手]", "确认跳转页直接跳转功能未开启，将不进行跳转")
-    return;
+    return
   }
 
   console.log("[小墨助手]", "确认跳转页直接跳转模块加载成功")

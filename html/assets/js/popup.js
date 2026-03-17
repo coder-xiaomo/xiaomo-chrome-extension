@@ -2,65 +2,65 @@ $(function () {
     /**
      * Direct Url
      */
-    const btnDirectUrl = document.querySelector("#btnDirectUrl");
+    const btnDirectUrl = document.querySelector("#btnDirectUrl")
     // 页面加载时，更新界面开关状态
     chrome.storage.sync.get("State_DirectUrl", ({ State_DirectUrl }) => {
-        btnDirectUrl.checked = !State_DirectUrl;
-    });
+        btnDirectUrl.checked = !State_DirectUrl
+    })
 
     // 点击开关时存储按钮状态并刷新页面
     btnDirectUrl.addEventListener("change", () => {
-        chrome.storage.sync.set({ State_DirectUrl: !btnDirectUrl.checked });
-        refreshPage('Direct Url');
-    });
+        chrome.storage.sync.set({ State_DirectUrl: !btnDirectUrl.checked })
+        refreshPage('Direct Url')
+    })
 
 
     /**
      * Expand Fulltext
      */
-    const btnExpandFulltext = document.querySelector("#btnExpandFulltext");
+    const btnExpandFulltext = document.querySelector("#btnExpandFulltext")
     // 页面加载时，更新界面开关状态
     chrome.storage.sync.get("State_ExpandFulltext", ({ State_ExpandFulltext }) => {
-        btnExpandFulltext.checked = !State_ExpandFulltext;
-    });
+        btnExpandFulltext.checked = !State_ExpandFulltext
+    })
 
     // 点击开关时存储按钮状态并刷新页面
     btnExpandFulltext.addEventListener("change", () => {
-        chrome.storage.sync.set({ State_ExpandFulltext: !btnExpandFulltext.checked });
-        refreshPage('Expand Fulltext');
-    });
+        chrome.storage.sync.set({ State_ExpandFulltext: !btnExpandFulltext.checked })
+        refreshPage('Expand Fulltext')
+    })
 
 
     /**
      * Google 广告拦截
      */
-    const btnGoogleAds = document.querySelector("#btnAdsBlock");
+    const btnGoogleAds = document.querySelector("#btnAdsBlock")
     // 页面加载时，更新界面开关状态
     chrome.storage.sync.get('State_AdsBlock', function (budget) {
-        btnGoogleAds.checked = !budget.State_AdsBlock;
-    });
+        btnGoogleAds.checked = !budget.State_AdsBlock
+    })
 
     // 点击开关时存储按钮状态并刷新页面
     $("#btnAdsBlock").click(function () {
-        chrome.storage.sync.set({ 'State_AdsBlock': !btnGoogleAds.checked });
-        chrome.extension.getBackgroundPage().updateAdsBlockStatus(!btnGoogleAds.checked);
-        refreshPage('Ads Block');
+        chrome.storage.sync.set({ 'State_AdsBlock': !btnGoogleAds.checked })
+        chrome.extension.getBackgroundPage().updateAdsBlockStatus(!btnGoogleAds.checked)
+        refreshPage('Ads Block')
     })
 
 
     /**
      * Double S 快捷搜索
      */
-    const btnSSSearch = document.querySelector("#btnSSSearch");
+    const btnSSSearch = document.querySelector("#btnSSSearch")
     // 页面加载时，更新界面开关状态
     chrome.storage.sync.get('State_SSSearch', function (budget) {
-        btnSSSearch.checked = !budget.State_SSSearch;
-    });
+        btnSSSearch.checked = !budget.State_SSSearch
+    })
 
     // 点击开关时存储按钮状态并刷新页面
     $("#btnSSSearch").click(function () {
-        chrome.storage.sync.set({ 'State_SSSearch': !btnSSSearch.checked });
-        // refreshPage('SS Search');
+        chrome.storage.sync.set({ 'State_SSSearch': !btnSSSearch.checked })
+        // refreshPage('SS Search')
     })
 
 
@@ -73,18 +73,18 @@ $(function () {
      * @returns
      */
     function isBrowserSettingPage({ url, action, showSorryInfo = true }) {
-        var protocol, isSettingPage = true;
+        var protocol, isSettingPage = true
         if (/^chrome:\/\/.*$/.test(url)) {
             protocol = "chrome://"
         } else if (/^edge:\/\/.*$/.test(url)) {
             protocol = "edge://"
         } else {
-            isSettingPage = false;
+            isSettingPage = false
         }
         if (showSorryInfo && isSettingPage) {
-            alert(`十分抱歉，由于浏览器限制，“${protocol}”开头的网站不支持${action}`);
+            alert(`十分抱歉，由于浏览器限制，“${protocol}”开头的网站不支持${action}`)
         }
-        return isSettingPage;
+        return isSettingPage
     }
 
     /**
@@ -98,13 +98,13 @@ $(function () {
             active: true,
             currentWindow: true
         }, (tabs) => {
-            console.log(tabs);
+            console.log(tabs)
             let message = {
                 info: messageInfo,
                 action: "refreshPage"
             }
             chrome.tabs.sendMessage(tabs[0].id, message, res => {
-                console.log(res);
+                console.log(res)
             })
         })
     }

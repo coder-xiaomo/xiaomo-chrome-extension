@@ -37,12 +37,12 @@ chrome.runtime.onInstalled.addListener(() => {
     "title": "Sample Context Menu",
     "contexts": ["selection"]
   })
-});
+})
 
 //
 chrome.commands.onCommand.addListener((command) => {
-  console.log("[小墨助手]", `Command: ${command}`);
-});
+  console.log("[小墨助手]", `Command: ${command}`)
+})
 
 /**
  * 书签
@@ -51,11 +51,11 @@ chrome.commands.onCommand.addListener((command) => {
 chrome.bookmarks.onCreated.addListener(() => {
   // do something
   console.log("[小墨助手]", "chrome.bookmarks.onCreated.")
-});
+})
 
 // chrome.runtime.onMessage.addListener((message, sender, reply) => {
-//   chrome.runtime.onMessage.removeListener(event);
-// });
+//   chrome.runtime.onMessage.removeListener(event)
+// })
 
 
 
@@ -65,10 +65,10 @@ const filter = {
       urlMatches: 'https://www.baidu.com/.*?',
     },
   ],
-};
+}
 
 chrome.webNavigation.onCompleted.addListener((details) => {
-  console.info("[小墨助手]", "The user has loaded my favorite website!", details);
-}, filter);
+  console.info("[小墨助手]", "The user has loaded my favorite website!", details)
+}, filter)
 
-importScripts("./scripts/advanced-search/background.js");
+importScripts("./scripts/advanced-search/background.js")
