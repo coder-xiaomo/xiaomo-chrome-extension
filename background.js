@@ -13,28 +13,43 @@ chrome.runtime.onInstalled.addListener(() => {
   /**
    * 右键菜单
    */
-  chrome.contextMenus.create({
-    id: 'bitdance',
-    title: '小墨助手'
-  })
 
-  chrome.contextMenus.create({
-    id: 'bitdance-advanced-search',
-    title: '高级搜索',
-    parentId: 'bitdance',
-    // onclick: function (info) {
-    // }
-  })
+  // 右键菜单 contextMenus 的 id
+  const contextMenusId = 'xiaomo-extension-contextMenus'
+
+  // 右键菜单选项
+  // ContextType: "all", "page", "frame", "selection", "link", "editable", "image", "video", "audio", "launcher", "browser_action", "page_action", "action"
+  const contextMenus = [
+    {
+      id: contextMenusId,
+      title: '小墨助手',
+      contexts: ["all"], //所有情况都显示
+    },
+    /*
+    {
+      parentId: contextMenusId,
+      id: `${contextMenusId}-sampleContextMenu`,
+      title: "Sample Context Menu",
+      contexts: ["selection"], // 选择文字时显示
+    },
+    */
+    {
+      parentId: contextMenusId,
+      id: `${contextMenusId}-advanced-search`,
+      title: '高级搜索',
+    },
+  ]
+
+  // 添加菜单项
+  for (contextMenusItem of contextMenus) {
+    chrome.contextMenus.create(contextMenusItem)
+  }
+
   chrome.contextMenus.onClicked.addListener(function (info) {
     console.log('当前菜单信息:' + JSON.stringify(info))
     console.log("[小墨助手]", "高级搜索 已点击菜单")
   })
 
-  chrome.contextMenus.create({
-    "id": "sampleContextMenu",
-    "title": "Sample Context Menu",
-    "contexts": ["selection"]
-  })
 })
 
 //
