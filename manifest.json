@@ -21,7 +21,6 @@
     "background": {
         "service_worker": "background.js"
     },
-    "chrome_url_overrides": {},
     "commands": {
         "_execute_action": {
             "suggested_key": {
@@ -107,7 +106,6 @@
     "optional_host_permissions": [],
     "optional_permissions": [],
     "options_page": "html/options.html",
-    "options_ui": {},
     "permissions": [
         "commands",
         "bookmarks",

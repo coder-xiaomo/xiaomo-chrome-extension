@@ -12,7 +12,7 @@ const RedirectRule = require("./scripts/direct-url/RedirectRule")
  */
 // 清单文件格式 (Manifest file format)
 // https://developer.chrome.google.cn/docs/extensions/reference/manifest?hl=zh-cn
-var manifest = {
+const manifest = {
     /**
      * Required
      */
@@ -29,11 +29,11 @@ var manifest = {
         "default_icon": { // optional
             "16": "resources/image/logo.png",
             "24": "resources/image/logo.png",
-            "32": "resources/image/logo.png"
+            "32": "resources/image/logo.png",
         },
         // 浏览器右上角logo 鼠标悬浮显示文字
         "default_title": "点击打开小墨助手 配置页面", // optional, shown in tooltip
-        "default_popup": "html/popup.html" // optional
+        "default_popup": "html/popup.html", // optional
     },
 
     // "default_locale": "zh",
@@ -46,7 +46,7 @@ var manifest = {
         "16": "resources/image/logo.png",
         "32": "resources/image/logo.png",
         "48": "resources/image/logo.png",
-        "128": "resources/image/logo.png"
+        "128": "resources/image/logo.png",
     },
 
 
@@ -58,12 +58,14 @@ var manifest = {
     // "automation": {},
 
     "background": {
-        "service_worker": "background.js"
+        "service_worker": "background.js",
     },
 
+    // https://developer.chrome.google.cn/docs/extensions/reference/manifest/chrome-settings-override?hl=zh-cn
     // "chrome_settings_overrides": {},
 
-    "chrome_url_overrides": {},
+    // https://developer.chrome.google.cn/docs/extensions/develop/ui/override-chrome-pages?hl=zh-cn
+    // "chrome_url_overrides": {},
 
     "commands": {
         // 最多可以设置 4 个快捷键，必须包含 Ctrl 或 Alt
@@ -75,24 +77,24 @@ var manifest = {
                 // "windows": "Alt+Comma",
                 // "mac": "Alt+Comma",
                 // "chromeos": "Alt+Comma",
-                // "linux": "Alt+Comma"
-            }
+                // "linux": "Alt+Comma",
+            },
         },
         "toggle-feature-foo": {
             "suggested_key": {
                 "default": "Ctrl+Shift+U",
-                "mac": "Command+Shift+U"
+                "mac": "Command+Shift+U",
             },
             "description": "Toggle feature foo",
-            "global": true
-        }
+            "global": true,
+        },
     },
 
     "content_scripts": [
         {
             "matches": [
                 "<all_urls>",
-                "*://*/*"
+                "*://*/*",
             ],
             "js": [
                 // "assets/js/lib/jquery.min.js",
@@ -101,32 +103,32 @@ var manifest = {
                 "scripts/content.js",
 
                 // Double S 快捷搜索 页面注入js
-                "scripts/advanced-search/content.js"
+                "scripts/advanced-search/content.js",
             ],
             "css": [],
-            "run_at": "document_start"
+            "run_at": "document_start",
         },
         // {
         //     // 屏蔽Google广告模块
         //     "matches": [
-        //         "*://*/*"
+        //         "*://*/*",
         //     ],
         //     "js": [
-        //         // "assets/js/remove-google-ads/removeAds.js"
+        //         // "assets/js/remove-google-ads/removeAds.js",
         //     ],
-        //     "run_at": "document_start"
+        //     "run_at": "document_start",
         // },
         // {
         //     // 阅读全文自动展开模块
         //     "matches": [
         //         "*://blog.csdn.net/*",
-        //         "*://www.it1352.com/*"
+        //         "*://www.it1352.com/*",
         //     ],
         //     "js": [
         //         // "assets/js/lib/jquery.min.js",
-        //         // "assets/js/expand-full-text/expand.js"
+        //         // "assets/js/expand-full-text/expand.js",
         //     ],
-        //     "run_at": "document_start"
+        //     "run_at": "document_start",
         // },
         {
             // Double S 快捷搜索 —— 自动搜索模块
@@ -136,12 +138,12 @@ var manifest = {
                 "*://fanyi.youdao.com/*",
                 "*://www.cnki.net/*",
                 "*://qikan.cqvip.com/*",
-                "*://lib.cqvip.com/*"
+                "*://lib.cqvip.com/*",
             ],
             "js": [
-                "scripts/advanced-search/content-helper.js"
+                "scripts/advanced-search/content-helper.js",
             ],
-            "run_at": "document_start"
+            "run_at": "document_start",
         },
         {
             // 确认页直接跳转
@@ -149,7 +151,7 @@ var manifest = {
                 return `*://${host}${RedirectRule[host].path}*`
             }),
             "css": [
-                "html/assets/lib/myukitoast/myukitoast.css"
+                "html/assets/lib/myukitoast/myukitoast.css",
             ],
             "js": [
                 "html/assets/lib/jquery-3.6.0.min.js",
@@ -157,7 +159,7 @@ var manifest = {
                 "scripts/direct-url/RedirectRule.js",
                 "scripts/direct-url/url.js",
             ],
-            "run_at": "document_start"
+            "run_at": "document_start",
         },
     ],
 
@@ -200,16 +202,26 @@ var manifest = {
     // "oauth2": {},
 
     "omnibox": {
-        "keyword": "ss"
+        "keyword": "ss",
     },
 
     "optional_host_permissions": [],
 
     "optional_permissions": [],
 
+    /**
+     * 扩展设置页
+     * options_page / options_ui 二选一即可
+     */
+    // 整页选项
+    // https://developer.chrome.google.cn/docs/extensions/develop/ui/options-page?hl=zh-cn#full_page
     "options_page": "html/options.html",
-
-    "options_ui": {},
+    // 嵌入式选项
+    // https://developer.chrome.google.cn/docs/extensions/develop/ui/options-page?hl=zh-cn#embedded_options
+    // "options_ui": {
+    //     "page": "html/options.html",
+    //     "open_in_tab": false,
+    // },
 
     "permissions": [
         //
@@ -219,7 +231,7 @@ var manifest = {
         // 右键菜单
         "contextMenus",
         "storage",
-        "webNavigation"
+        "webNavigation",
     ],
 
     // "replacement_web_app": "https://example.com", // 待配置
@@ -238,7 +250,7 @@ var manifest = {
 
     "version_name": "1.0 beta", // 插件配置页面显示版本
 
-    "web_accessible_resources": []
+    "web_accessible_resources": [],
 }
 
 function save({ beautify = false }) {
